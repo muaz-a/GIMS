@@ -1,0 +1,119 @@
+Dependencies for Project 'lab7', Target 'Target 1': (DO NOT MODIFY !)
+F (.\adc_init.c)(0x5C86C9F6)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\adc_init.o --omf_browse .\objects\adc_init.crf --depend .\objects\adc_init.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+I (LCD.h)(0x5C85D4BC)
+I (init_sw_led.h)(0x5C85D4BC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x00000000)
+F (.\adc_init.h)(0x5C85E0B2)()
+F (.\init_interrupts.c)(0x5C85D4BC)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\init_interrupts.o --omf_browse .\objects\init_interrupts.crf --depend .\objects\init_interrupts.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+F (.\init_interrupts.h)(0x5C85D4BC)()
+F (.\init_lib.c)(0x5C85D4BC)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\init_lib.o --omf_browse .\objects\init_lib.crf --depend .\objects\init_lib.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+F (.\init_lib.h)(0x5C85D4BC)()
+F (.\init_sw_led.c)(0x5C85D4BC)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\init_sw_led.o --omf_browse .\objects\init_sw_led.crf --depend .\objects\init_sw_led.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+F (.\init_sw_led.h)(0x5C85D4BC)()
+F (.\LCD.c)(0x5C85D4BC)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+I (LCD.h)(0x5C85D4BC)
+I (init_sw_led.h)(0x5C85D4BC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x00000000)
+F (.\LCD.h)(0x5C85D4BC)()
+F (.\PWM.c)(0x5C89498E)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+I (PWM.h)(0x5C85D4BC)
+F (.\PWM.h)(0x5C85D4BC)()
+F (.\main.c)(0x5C93A466)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (init_lib.h)(0x5C85D4BC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (usart.h)(0x5C8A87FC)
+I (LCD.h)(0x5C85D4BC)
+I (init_sw_led.h)(0x5C85D4BC)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+I (SPI.h)(0x5C92B3AE)
+F (.\usart.c)(0x5C916768)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+F (.\SPI.c)(0x5C93C048)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\spi.o --omf_browse .\objects\spi.crf --depend .\objects\spi.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
+I (SPI.h)(0x5C92B3AE)
+I (K:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
+I (K:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm3.h)(0x5B623564)
+I (K:\KeilUvis\ARM\ARMCC\include\stdint.h)(0x599FA01E)
+I (K:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B200374)
+I (K:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5908A6)
+I (K:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B623564)
+I (K:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
+F (RTE\Device\STM32F100RB\RTE_Device.h)(0x56FAA33C)()
+F (RTE\Device\STM32F100RB\startup_stm32f10x_md_vl.s)(0x4F1EF31C)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD_VL SETA 1"--list .\listings\startup_stm32f10x_md_vl.lst --xref -o .\objects\startup_stm32f10x_md_vl.o --depend .\objects\startup_stm32f10x_md_vl.d)
+F (RTE\Device\STM32F100RB\system_stm32f10x.c)(0x4F1EF31C)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IK:\KeilUvis\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IK:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x00000000)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E3D9E2C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x00000000)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x00000000)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x00000000)
