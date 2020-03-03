@@ -6,6 +6,7 @@
 #include "usart.h"
 #include "LCD.h"
 #include "init_sw_led.h"
+#include "systemstartup.h"
 #include "stm32f10x.h"
 #include <stdbool.h>
 #include <stdlib.h> 

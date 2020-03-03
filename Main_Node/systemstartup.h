@@ -5,10 +5,9 @@
 #include "stm32f10x.h"
 #include <stdbool.h>
 #include "usart.h"
-#include "LCD.h";
+#include "LCD.h"
 
-uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
+
 
 
 #define ATPacketSize 19

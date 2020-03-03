@@ -43,7 +43,7 @@ int k = 0;
  uint16_t recieve_usart(void)
  {
 	 
-	 if((USART3->SR & USART_SR_RXNE) == USART_SR_RXNE)
+	 while(USART3->SR & USART_SR_RXNE)
 	 {
 		 return USART3->DR;
 		 }
@@ -52,21 +52,25 @@ int k = 0;
  
  void USART3_IRQHandler(void){
 
-	 GPIOC->ODR |= GPIO_ODR_ODR8;		// set Blue LED onboard
+//	 //GPIOC->ODR |= GPIO_ODR_ODR8;		// set Blue LED onboard
 	 buffer[k] = recieve_usart();		// enter first byte to buffer
-	 if(buffer[0]==0x7e){						// check to make sure it is a packet
-		 if (k==2){
-			 bsize = buffer[k]+3;				// get the packet length
-		 }
-		 if(k==bsize){								// once at end of pecket
-			 bfull = true;							// set buffer full flag
-			 k=0;												// reset k counter
-			 GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
-		 }else{
-			 bfull = false;							// if not at end increment counter
-			k++;
-		 }
-	 }else {							// if first byte wasn't 0x7E reset counter
-		 k = 0;
-	 }	 
+//	 if(buffer[0]==0x7e){						// check to make sure it is a packet
+//		 if (k==2){
+//			 bsize = buffer[k]+3;				// get the packet length
+//		 }
+//		 if(k==bsize){								// once at end of pecket
+//			 bfull = true;							// set buffer full flag
+//			 k=0;												// reset k counter
+//			 //GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
+//		 }else{
+//			 bfull = false;							// if not at end increment counter
+//			k++;
+//		 }
+//	 }else {							// if first byte wasn't 0x7E reset counter
+//		 k = 0;
+//	 }	 
+	 dataToLCD(recieve_usart());
+	 k++;
  }
+ 
+ 
