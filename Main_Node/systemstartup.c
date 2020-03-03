@@ -18,7 +18,7 @@ uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address o
 void StartUp(void)
 {
 	// send packet to find device names
-	 GPIOC->ODR |= GPIO_ODR_ODR9;		// set Blue LED onboard
+	 GPIOC->ODR |= GPIO_ODR_ODR9;		// set Green LED onboard
 	for(int p=0; p < 19; p++)
 	{
 		send_usart(packetSend[p]);
