@@ -1,6 +1,7 @@
 #include "main.h"
 
 uint8_t pressedBtn;
+static state cur_state = WAIT_MAIN_1;
 
 int main() {	
 	
@@ -17,6 +18,17 @@ int main() {
 	ToLCD(LCD_LN1, 0);
 	while(1) 
 	{
+		switch(cur_state)
+		{
+			case WAIT_MAIN_1:
+				while(cur_state == WAIT_MAIN_1)
+				{
+					// can do some rudimentary checking or signalling here 
+				}
+				break;
+				
+			case SEND_RESPONSE_2:
+				
 		if(detect_btn_press() != pressedBtn)
 		{
 			pressedBtn = detect_btn_press();
