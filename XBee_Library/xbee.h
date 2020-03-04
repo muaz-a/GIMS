@@ -71,5 +71,9 @@ void xbeeSend(uint8_t address[], int msg_leng,char *message);
 // Struct includes: device #, data, data length.
 void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved);
 
+// XbeeSetUp initializes NODE struct with
+// xbee addresses, index and status
+void XbeeSetUp(struct NODE Devices[]);
+
 #endif
 

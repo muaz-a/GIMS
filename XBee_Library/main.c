@@ -11,27 +11,7 @@ int main(){
 	uint8_t usebuffer[30];
 	uint8_t usebsize = 30;
 	struct NODE Device[2];		// setup Device Struct with Addresses and index's
-	Device[0].address[0] = 0x00;
-	Device[0].address[1] = 0x13;
-	Device[0].address[2] = 0xA2;
-	Device[0].address[3] = 0x00;
-	Device[0].address[4] = 0x41;
-	Device[0].address[5] = 0xB1;
-	Device[0].address[6] = 0x06;
-	Device[0].address[7] = 0x93; 
-	Device[0].index = 1;
-	Device[0].status = RDY;
-	
-	Device[1].address[0] = 0x00;
-	Device[1].address[1] = 0x13;
-	Device[1].address[2] = 0xA2;
-	Device[1].address[3] = 0x00;
-	Device[1].address[4] = 0x41;
-	Device[1].address[5] = 0xB1;
-	Device[1].address[6] = 0x15;
-	Device[1].address[7] = 0x4B; 
-	Device[1].index = 2;
-	Device[1].status = RDY;
+
 	
 	struct RXD Recieved;		// To hold recieved data
 	Recieved.device = 0;
@@ -40,6 +20,8 @@ int main(){
 	clockInit();
 	init_usart();
 	initLCD();
+	
+	XbeeSetUp(Device);		// Set up Device Struct with Xbee addresses, index and status
 	
 	// Sending a message to specific Xbee
 	xbeeSend(Device[0].address, length, message);		// coordinator to Reciever 1

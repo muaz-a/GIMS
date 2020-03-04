@@ -2,10 +2,12 @@
 
 
 // Globals used to pass buffer data from UART_IRQHandler
- uint8_t buffer[30];
- uint8_t bsize = 30;
- bool bfull = false;
-static int k = 0;		// buffer index
+	uint8_t buffer[30];
+	uint8_t bsize = 30;
+	bool bfull = false;
+	static int k = 0;		// buffer index
+	uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
+	uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 
  void init_usart(void)
  {
@@ -122,8 +124,6 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
 	 	uint8_t frametype;
 	 	uint8_t rxdRF[10];
 		int rxdsize= 0;
-	 	uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-		uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 	 	bool device1, device2;
 		frametype = buffer[3];	 
 	 
@@ -184,4 +184,23 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
 		
 	 return;
  }
+ 
+ void XbeeSetUp(struct NODE Devices[])
+ {
+	 for(int i =0; i < 2; i++)
+	 {
+		 for(int j = 0; j < 8; j++)
+		 {
+			 if(i==0)
+			 {
+					Devices[i].address[j] = ED1[j];			// copy address over
+			 }
+			 else Devices[i].address[j] = ED2[j];			// copy address over
+		 }
+		 Devices[i].status = RDY;				// set to ready
+		 Devices[i].index = i+1;				// set to address
+	 }
+		
+ }
+ 
  
