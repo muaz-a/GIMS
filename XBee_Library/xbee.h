@@ -47,7 +47,6 @@ void init_usart(void);
 
 // Send Data through UART
 // Main Node: Use xbeeSend to send data to Recievers
-// Reciever Node: Use send_usart to send to coordinator
 void send_usart(uint16_t sending);
 
 // Recieve UART data
@@ -62,6 +61,8 @@ void USART3_IRQHandler(void);
 
 // XbeeSend takes uint8_t address array for Reciever
 // int messge length, and char array of message to send
+// For Main_Node: address to specific Reciever
+// For Reciever Node: address = 0x 00 00 00 00 00 00 00 00 to send to Main_Node
 // Creates a packet of data for API command with message and sends
 void xbeeSend(uint8_t address[], int msg_leng,char *message);
 
