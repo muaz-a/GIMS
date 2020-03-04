@@ -184,7 +184,6 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
-            <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -393,16 +392,6 @@
               <FilePath>.\main.h</FilePath>
             </File>
             <File>
-              <FileName>init_sw_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\init_sw_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>init_sw_led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\init_sw_led.h</FilePath>
-            </File>
-            <File>
               <FileName>LCD.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\LCD.c</FilePath>
@@ -411,16 +400,6 @@
               <FileName>LCD.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\LCD.h</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\usart.h</FilePath>
             </File>
             <File>
               <FileName>init_lib.c</FileName>
@@ -433,14 +412,14 @@
               <FilePath>.\init_lib.h</FilePath>
             </File>
             <File>
-              <FileName>systemstartup.c</FileName>
+              <FileName>xbee.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\systemstartup.c</FilePath>
+              <FilePath>.\xbee.c</FilePath>
             </File>
             <File>
-              <FileName>systemstartup.h</FileName>
+              <FileName>xbee.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\systemstartup.h</FilePath>
+              <FilePath>.\xbee.h</FilePath>
             </File>
           </Files>
         </Group>

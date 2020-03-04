@@ -123,65 +123,13 @@ void stringToLCD(char * message)
 	commandToLCD(LCD_MCR);
 }
 
-void dipsw_LCD(uint16_t sw_val)
+
+void delay(uint32_t count)
 {
-	uint8_t lcddata = 0x30;
-	
-	sw_val = (~(sw_val << 12)>>12);
-	
-	
-	lcddata |= sw_val;
-	
-	if(lcddata > 0x39)
+	for(int i = 0; i <count; i++)
 	{
-		dataToLCD(0x31);
-		dataToLCD(lcddata-10);
-	}
-	else {
-		dataToLCD(lcddata);
-	}
-}
-
-void write_stuff(void)
-{
-			int i = 1;
 		
-		if (i==0)
-		{
-		//commandToLCD(LCD_CLR);
-		//commandToLCD(LCD_LN1);
-		dipsw_LCD(read_switches());
-			
-		}
-		if (i==1)
-		{
-			
-			commandToLCD(LCD_LN1);
-			stringToLCD("What Bear is Best?");
-			delay(9000000);
-			commandToLCD(LCD_LN1);
-			stringToLCD("False... Black Bear");
-			delay(10000000);
-			commandToLCD(LCD_CLR);
-			commandToLCD(LCD_LN1);
-			stringToLCD("Bears Eat Beats");
-			delay(10000000);
-			commandToLCD(LCD_LN2);
-			stringToLCD("Bears...");
-			delay(10000000);			
-			commandToLCD(LCD_CLR);
-			commandToLCD(LCD_LN1);
-			stringToLCD("Beats...");
-			delay(10000000);
-			commandToLCD(LCD_LN2);
-			stringToLCD("Battlestar Galactica!");
-			delay(14000000);
-			commandToLCD(LCD_CLR);
-			
-		}
-		
+	}
+	return;
 }
-	
-
-
 

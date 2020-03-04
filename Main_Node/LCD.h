@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 #include "stm32f10x.h"
-#include "init_sw_led.h"
+
 
 
 //Commands for Hitachi 44780 compatible LCD controllers
@@ -34,9 +34,7 @@ void initLCDsequence(void);
 
 void stringToLCD(char * message);
 
-void dipsw_LCD(uint16_t sw_val);
-
-void write_stuff(void);
+void delay(uint32_t count);
 
 #endif
 
