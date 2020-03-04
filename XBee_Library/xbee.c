@@ -5,7 +5,7 @@
 	uint8_t buffer[30];
 	uint8_t bsize = 30;
 	bool bfull = false;
-	static int k = 0;		// buffer index
+	int bcount = 0;		// buffer index
 	uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
 	uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 
@@ -54,21 +54,21 @@
  void USART3_IRQHandler(void){
 
 	 GPIOC->ODR |= GPIO_ODR_ODR8;		// set Blue LED onboard
-	 buffer[k] = recieve_usart();		// enter first byte to buffer
+	 buffer[bcount] = recieve_usart();		// enter first byte to buffer
 	 if(buffer[0]==0x7e){						// check to make sure it is a packet
-		 if (k==2){
-			 bsize = buffer[k]+3;				// get the packet length
+		 if (bcount==2){
+			 bsize = buffer[bcount]+3;				// get the packet length
 		 }
-		 if(k==bsize){								// once at end of pecket
+		 if(bcount==bsize){								// once at end of pecket
 			 bfull = true;							// set buffer full flag
-			 k=0;												// reset k counter
+			 bcount=0;												// reset k counter
 			 GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
 		 }else{
 			 bfull = false;							// if not at end increment counter
-			k++;
+			bcount++;
 		 }
 	 }else {							// if first byte wasn't 0x7E reset counter
-		 k = 0;
+		 bcount = 0;
 	 }	 
  }
  
@@ -78,7 +78,7 @@
 	 uint8_t startdelim = 0x7E;			// starting deliminator
 	 uint8_t plength = 0x0E + msg_leng;		// packet length (from byte 3 to checksum)
 	 uint8_t frametype = 0x10;		// frame type (Trasmit Request)
-	 uint8_t frameID = 0x01;			// Frame ID
+	 uint8_t frameID = 0x00;			// Frame ID
 	 uint16_t addsum = 0, messsum = 0;
 	 for(int i = 0; i <8;i++)
 	 {
@@ -197,7 +197,7 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
 			 }
 			 else Devices[i].address[j] = ED2[j];			// copy address over
 		 }
-		 Devices[i].status = RDY;				// set to ready
+		 Devices[i].status = OFFLINE;				// set to ready
 		 Devices[i].index = i+1;				// set to address
 	 }
 		
