@@ -23,24 +23,24 @@ Includes all functions related to Xbee's, and UART
 
 // Status used to determine what reciever is doing
 typedef enum {
-	RDY = 1,
-	OFFLINE = 2,
-	TIMEOUT = 3,
-	WAITING = 4
+	RDY,
+	OFFLINE,
+	TIMEOUT,
+	WAITING
 } Status;
 
 // NODE used for Reciever Information
-struct NODE{
+typedef struct{
 	uint8_t address[8];
 	int index;
 	Status status;
-};
+} NODE;
 // Struct RXD used to hold Recieved data
-struct RXD{
+typedef struct{
 	int device;
 	char data[20];
 	int length;
-};
+}RXD;
 
 
 extern uint8_t buffer[30];
@@ -75,11 +75,11 @@ void xbeeSend(uint8_t address[], int msg_leng,char *message);
 // XbeeRecieve takes the buffer, buffersize and recieved struct
 // Goes through packet and extracts data into recieved struct
 // Struct includes: device #, data, data length.
-void XbeeRecieve( struct RXD *recieved);
+void XbeeRecieve( RXD *recieved);
 
 // XbeeSetUp initializes NODE struct with
 // xbee addresses, index and status
-void XbeeSetUp(struct NODE Devices[]);
+void XbeeSetUp(NODE Devices[]);
 
 #endif
 

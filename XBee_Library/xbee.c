@@ -119,7 +119,7 @@
 	 
  }
  
-void XbeeRecieve( struct RXD *recieved)
+void XbeeRecieve(RXD *recieved)
  {
 	 uint8_t frametype;
 	 	uint8_t rxdRF[RXD_LENGTH];
@@ -199,7 +199,7 @@ void XbeeRecieve( struct RXD *recieved)
 	 return;
  }
  
- void XbeeSetUp(struct NODE Devices[])
+ void XbeeSetUp(NODE Devices[])
  {
 	 for(int i =0; i < 2; i++)
 	 {
