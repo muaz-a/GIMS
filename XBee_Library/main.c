@@ -26,22 +26,14 @@ int main(){
 	// Sending a message to specific Xbee
 	xbeeSend(Device[0].address, length, message);		// coordinator to Reciever 1
 	xbeeSend(Device[0].address, length2, message1);		// coordinator to Reciever 1
-	xbeeSend(cordaddress, length2, message1);				// Reciever to coordinator
+	//xbeeSend(cordaddress, length2, message1);				// Reciever to coordinator
 	
 	
 	// Minimum main needed to recieve UART data from Xbee
 	while(1)
 	{
-		if(bfull)
-		{
-			usebsize = bsize;		// copy data to avoid buffer being changed by interrupt
-			for(int m=0; m<usebsize;m++)
-			{
-				usebuffer[m] = buffer[m];			
-			}	
-			XbeeRecieve(usebuffer, usebsize,&Recieved);		// Actual function to go through packet
+			XbeeRecieve(&Recieved);		// Actual function to go through packet
 			
-		}
 		
 		
 	}

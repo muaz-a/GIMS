@@ -21,7 +21,6 @@ Includes all functions related to Xbee's, and UART
 #define FRAME_ADDRESS 3
 #define DATA_ADDRESS 15
 
-
 // Status used to determine what reciever is doing
 typedef enum {
 	RDY = 1,
@@ -32,20 +31,19 @@ typedef enum {
 
 // NODE used for Reciever Information
 struct NODE{
-	uint8_t address[RXD_LENGTH];
+	uint8_t address[8];
 	int index;
 	Status status;
 };
 // Struct RXD used to hold Recieved data
 struct RXD{
 	int device;
-	char data[RXD_LENGTH];
+	char data[20];
 	int length;
 };
 
 
-
-extern uint8_t buffer[PACKET_LENGTH];
+extern uint8_t buffer[30];
 extern uint8_t bsize;
 extern bool bfull;
 
