@@ -15,6 +15,13 @@ Includes all functions related to Xbee's, and UART
 #include "init_lib.h"	// To initialize STM standard clocks and Onboard LED's (Not needed if already have)
 #include "LCD.h"		// To show recieved Data, Not Needed
 
+#define ADDRESS_LENGTH 8
+#define RXD_LENGTH 10
+#define PACKET_LENGTH 30
+#define FRAME_ADDRESS 3
+#define DATA_ADDRESS 15
+
+
 // Status used to determine what reciever is doing
 typedef enum {
 	RDY = 1,
@@ -25,19 +32,20 @@ typedef enum {
 
 // NODE used for Reciever Information
 struct NODE{
-	uint8_t address[8];
+	uint8_t address[RXD_LENGTH];
 	int index;
 	Status status;
 };
 // Struct RXD used to hold Recieved data
 struct RXD{
 	int device;
-	char data[20];
+	char data[RXD_LENGTH];
 	int length;
 };
 
 
-extern uint8_t buffer[30];
+
+extern uint8_t buffer[PACKET_LENGTH];
 extern uint8_t bsize;
 extern bool bfull;
 
@@ -69,7 +77,7 @@ void xbeeSend(uint8_t address[], int msg_leng,char *message);
 // XbeeRecieve takes the buffer, buffersize and recieved struct
 // Goes through packet and extracts data into recieved struct
 // Struct includes: device #, data, data length.
-void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved);
+void XbeeRecieve( struct RXD *recieved);
 
 // XbeeSetUp initializes NODE struct with
 // xbee addresses, index and status
