@@ -6,8 +6,8 @@
 	uint8_t bsize = 30;
 	bool bfull = false;
 	int bcount = 0;		// buffer index
-	uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-	uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
+	uint8_t ED1[ADDRESS_LENGTH] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
+	uint8_t ED2[ADDRESS_LENGTH] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 
  void init_usart(void)
  {
@@ -62,13 +62,17 @@
 		 if(bcount==bsize){								// once at end of pecket
 			 bfull = true;							// set buffer full flag
 			 bcount=0;												// reset k counter
+
 			 GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
+
+			 
 		 }else{
 			 bfull = false;							// if not at end increment counter
 			bcount++;
 		 }
 	 }else {							// if first byte wasn't 0x7E reset counter
 		 bcount = 0;
+		 GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
 	 }	 
  }
  
@@ -80,7 +84,7 @@
 	 uint8_t frametype = 0x10;		// frame type (Trasmit Request)
 	 uint8_t frameID = 0x00;			// Frame ID
 	 uint16_t addsum = 0, messsum = 0;
-	 for(int i = 0; i <8;i++)
+	 for(int i = 0; i <ADDRESS_LENGTH;i++)
 	 {
 		 addsum = addsum + address[i];		// find sum of 64-bit address
 	 }
@@ -100,7 +104,7 @@
 	 send_usart(plength);
 	 send_usart(frametype);
 	 send_usart(frameID);
-	 	 for(int i = 0; i <8;i++)
+	 	 for(int i = 0; i <ADDRESS_LENGTH;i++)
 	 {
 		 send_usart(address[i]);
 	 }
@@ -122,12 +126,12 @@
 void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
  {
 	 	uint8_t frametype;
-	 	uint8_t rxdRF[10];
+	 	uint8_t rxdRF[RXD_LENGTH];
 		int rxdsize= 0;
 	 	bool device1, device2;
-		frametype = buffer[3];	 
+		frametype = buffer[FRAME_ADDRESS];	 
 	 
-	 for(int i=0; i < 8;i++)// check sending address starting on byte 5 (index 4)
+	 for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
 	 {			
 			if(buffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
 				{		
@@ -149,10 +153,10 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
 	 
 	if(frametype == 0x90)
 		{
-			for(int j=15;j<buffersize;j++)
+			for(int j=DATA_ADDRESS;j<buffersize;j++)
 				{
-					rxdRF[j-15] = buffer[j];		// used for printing to LCD
-					recieved->data[j-15] = buffer[j];
+					rxdRF[j-DATA_ADDRESS] = buffer[j];		// used for printing to LCD
+					recieved->data[j-DATA_ADDRESS] = buffer[j];
 					recieved->length++;
 					rxdsize++;					// used for printing to LCD
 				}
@@ -189,7 +193,7 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, struct RXD *recieved)
  {
 	 for(int i =0; i < 2; i++)
 	 {
-		 for(int j = 0; j < 8; j++)
+		 for(int j = 0; j < ADDRESS_LENGTH; j++)
 		 {
 			 if(i==0)
 			 {

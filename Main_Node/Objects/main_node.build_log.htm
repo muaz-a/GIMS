@@ -28,26 +28,26 @@ Project File Date:  03/04/2020
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_stm32f10x_md_vl.s...
-compiling init_lib.c...
-compiling system_stm32f10x.c...
 compiling LCD.c...
 LCD.c(113): warning:  #223-D: function "strlen" declared implicitly
   	uint16_t messageLength = strlen(message);
 LCD.c: 1 warning, 0 errors
+compiling system_stm32f10x.c...
+compiling init_lib.c...
+compiling main.c...
+main.h(33): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c(122): warning:  #111-D: statement is unreachable
+  						break;
+main.c: 2 warnings, 0 errors
 compiling xbee.c...
 xbee.c(52): warning:  #940-D: missing return statement at end of non-void function "recieve_usart" 
    }
-xbee.c(206): warning:  #1-D: last line of file ends without a newline
+xbee.c(210): warning:  #1-D: last line of file ends without a newline
    
 xbee.c: 2 warnings, 0 errors
-compiling main.c...
-main.h(32): warning:  #1-D: last line of file ends without a newline
-  #endif
-main.c(116): warning:  #111-D: statement is unreachable
-  						break;
-main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=2440 RO-data=320 RW-data=28 ZI-data=1668  
+Program Size: Code=2600 RO-data=320 RW-data=28 ZI-data=1668  
 ".\Objects\main_node.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -76,10 +76,10 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
-Build Time Elapsed:  00:00:01
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define DEBUG
 
 #include "init_lib.h"
 #include "xbee.h"
@@ -13,12 +14,12 @@
 
 
 
-extern uint8_t buffer[30];
+extern uint8_t buffer[PACKET_LENGTH];
 extern uint8_t bsize;
 extern int bcount;
 extern bool bfull;
 
-#define NUM_DEVICES 1
+#define NUM_DEVICES 2
 
 typedef enum
 {

@@ -3,8 +3,8 @@
 int main(void)
 {
 	
-	uint8_t usebuffer[30];
-	uint8_t usebsize = 30;
+	uint8_t usebuffer[PACKET_LENGTH];
+	uint8_t usebsize = PACKET_LENGTH;
 	struct NODE Device[NUM_DEVICES];		// setup Device Struct with Addresses and index's
 	char synchmessage[] = "1";
 	int synchcount = 0;
@@ -24,16 +24,21 @@ int main(void)
 		switch(cur_state)
 		{
 			case POWER_UP_1:						// configure NODE struct for 2 devices
+						stringToLCD("Power Up");
 						XbeeSetUp(Device);
 						next_state = SEND_SYNCH_2;
 						break;
 				
 			case SEND_SYNCH_2:
+						commandToLCD(LCD_CLR);
+						stringToLCD("Send Synch");
 						xbeeSend(Device[synchcount].address,1,"1");			// send "1" as synch message
 						next_state = WAIT_RXD_3;
 							break;
 			
 			case WAIT_RXD_3:
+						commandToLCD(LCD_CLR);
+						stringToLCD("Wait For Response");
 						while(!bfull)			// wait unit buffer is full
 						{
 							
@@ -73,10 +78,11 @@ int main(void)
 						}
 				
 			case STAGGER_RESP_4:
-						
+						commandToLCD(LCD_CLR);
+						stringToLCD("Stagger Start");
 						for(int j = 0; j < NUM_DEVICES; j++)
 						{
-								xbeeSend(Device[0].address,1,"2");
+								xbeeSend(Device[j].address,1,"2");
 								while(!bfull)			// wait unit buffer is full
 								{
 									
