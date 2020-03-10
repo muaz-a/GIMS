@@ -5,9 +5,9 @@
     uint8_t buffer[30];
     uint8_t bsize = 30;
     bool bfull = false;
-    int bcount = 0;		// buffer index
-    uint8_t ED1[ADDRESS_LENGTH] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-    uint8_t ED2[ADDRESS_LENGTH] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
+    static int k = 0;		// buffer index
+    uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
+    uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 
  void init_usart(void)
  {
@@ -48,31 +48,27 @@
      {
          return USART3->DR;
          }
-     
+     else return 0;
  }
  
  void USART3_IRQHandler(void){
 
      GPIOC->ODR |= GPIO_ODR_ODR8;		// set Blue LED onboard
-     buffer[bcount] = recieve_usart();		// enter first byte to buffer
+     buffer[k] = recieve_usart();		// enter first byte to buffer
      if(buffer[0]==0x7e){						// check to make sure it is a packet
-         if (bcount==2){
-             bsize = buffer[bcount]+3;				// get the packet length
+         if (k==2){
+             bsize = buffer[k]+3;				// get the packet length
          }
-         if(bcount==bsize){								// once at end of pecket
+         if(k==bsize){								// once at end of pecket
              bfull = true;							// set buffer full flag
-             bcount=0;												// reset k counter
-
+             k=0;												// reset k counter
              GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
-
-             
          }else{
              bfull = false;							// if not at end increment counter
-            bcount++;
+            k++;
          }
      }else {							// if first byte wasn't 0x7E reset counter
-         bcount = 0;
-         GPIOC->ODR &= 0xEF;				// reset Blue LED onboard
+         k = 0;
      }	 
  }
  
@@ -84,7 +80,7 @@
      uint8_t frametype = 0x10;		// frame type (Trasmit Request)
      uint8_t frameID = 0x00;			// Frame ID
      uint16_t addsum = 0, messsum = 0;
-     for(int i = 0; i <ADDRESS_LENGTH;i++)
+     for(int i = 0; i <8;i++)
      {
          addsum = addsum + address[i];		// find sum of 64-bit address
      }
@@ -104,7 +100,7 @@
      send_usart(plength);
      send_usart(frametype);
      send_usart(frameID);
-         for(int i = 0; i <ADDRESS_LENGTH;i++)
+         for(int i = 0; i <8;i++)
      {
          send_usart(address[i]);
      }
@@ -123,77 +119,53 @@
      
  }
  
-void XbeeRecieve(uint8_t buffer[], int buffersize, RXD *recieved)
+void XbeeRecieve(RXD *recieved)
  {
-        uint8_t frametype;
-        uint8_t rxdRF[RXD_LENGTH];
-        int rxdsize= 0;
-        bool device1, device2;
-        frametype = buffer[FRAME_ADDRESS];	 
-     
-     for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
-     {			
-            if(buffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
-                {		
-                    device1 = true;		// used for printing to LCD
-                    recieved->device = 1;
-                } else 
-                {
-                    device1 = false;	// used for printing to LCD
-                }
-            if (buffer[i+4] == ED2[i])// check for End Device 2 match, set flag if matches
-                {		
-                    device2 = true;		// used for printing to LCD
-                    recieved->device = 2;
-                } else
-                { 
-                    device2 = false;		// used for printing to LCD
-                }
+     uint8_t frametype;
+        frametype = buffer[FRAME_ADDRESS];
+        uint8_t usebuffer[PACKET_LENGTH];
+        uint8_t usebsize = PACKET_LENGTH;
+
+        while(!bfull && !alarm)			// wait unit buffer is full
+        {
+            
+        }
+        
+        if (alarm) 
+            return;
+        
+        usebsize = bsize;		// copy data to avoid buffer being changed by interrupt
+        for(int m=0; m<usebsize;m++)
+        {
+            usebuffer[m] = buffer[m];
+            buffer[m] = 0x00;
+        }	
+        bfull = false;					// reset buffer full flag
+
+    for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
+    {
+         recieved->address[i]=usebuffer[i+4];
     }
-     
+     recieved->length=0;
     if(frametype == 0x90)
         {
-            for(int j=DATA_ADDRESS;j<buffersize;j++)
-                {
-                    rxdRF[j-DATA_ADDRESS] = buffer[j];		// used for printing to LCD
-                    recieved->data[j-DATA_ADDRESS] = buffer[j];
-                    recieved->length++;
-                    rxdsize++;					// used for printing to LCD
-                }
-                
-// Code used for Printing to LCD. Can be commented out				
-            if(device1)
-                {						// if device 1 matches, print to LCD
-                    commandToLCD(LCD_CLR);
-                    stringToLCD("End Device 1:");
-                }
-            if(device2)
-                {						// if device 2 matches, print to LCD
-                    commandToLCD(LCD_CLR);
-                    stringToLCD("End Device 2:");
-                    
-                }
-            commandToLCD(LCD_LN2);		// print if pin9 was ON or OFF depending on IO flag
-            for(int t=0; t<	rxdsize; t++)
-                {
-                    dataToLCD(rxdRF[t]);
-                }				
-            
-            commandToLCD(LCD_LN1);		// reset cursor and buffer full flag
+            for(int j=DATA_ADDRESS;j<usebsize;j++)
+            {
+                recieved->data[j-DATA_ADDRESS] = usebuffer[j];
+                recieved->length++;
+            }
             
     // Need these last lines			
                 bfull= false;
 
         }
-        
-     return;
  }
  
  void XbeeSetUp(NODE Devices[])
  {
      for(int i =0; i < 2; i++)
      {
-         for(int j = 0; j < ADDRESS_LENGTH; j++)
+         for(int j = 0; j < 8; j++)
          {
              if(i==0)
              {
@@ -201,10 +173,8 @@ void XbeeRecieve(uint8_t buffer[], int buffersize, RXD *recieved)
              }
              else Devices[i].address[j] = ED2[j];			// copy address over
          }
-         Devices[i].status = OFFLINE;				// set to ready
+         Devices[i].status = RDY;				// set to ready
          Devices[i].index = i+1;				// set to address
      }
         
  }
- 
- 

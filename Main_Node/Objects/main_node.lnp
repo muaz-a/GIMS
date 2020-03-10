@@ -3,6 +3,7 @@
 ".\objects\lcd.o"
 ".\objects\init_lib.o"
 ".\objects\xbee.o"
+".\objects\sleep_lib.o"
 ".\objects\startup_stm32f10x_md_vl.o"
 ".\objects\system_stm32f10x.o"
 --strict --scatter ".\Objects\main_node.sct"
