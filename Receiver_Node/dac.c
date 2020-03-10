@@ -6,17 +6,17 @@ uint16_t sin_data[SIN_ARRAY_SIZE]; //table containing the data to generate the s
 
 void dacInit(double amplitude, uint16_t frequency)
 {
-	uint32_t x;
-	for (x = 0; x < SIN_ARRAY_SIZE; x++)
-	{
-		sin_data[x] = GenerateWave(amplitude);
-	}
-	
-	ConfigureGPIO();
-	ConfigureGPIOasAnalog();
-	ConfigureDAC();
-	ConfigureDMA();
-	ConfigureTIM6(frequency);
+  uint32_t x;
+  for (x = 0; x < SIN_ARRAY_SIZE; x++)
+  {
+    sin_data[x] = GenerateWave(amplitude);
+  }
+  
+  ConfigureGPIO();
+  ConfigureGPIOasAnalog();
+  ConfigureDAC();
+  ConfigureDMA();
+  ConfigureTIM6(frequency);
 }
 
 void  ConfigureGPIO(void)

@@ -8,5 +8,5 @@ void ADCInit(void);
 
 // Read value of ADC
 uint32_t readADC(void);
-	
+  
 #endif
