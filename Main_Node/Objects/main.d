@@ -16,3 +16,4 @@
 .\objects\main.o: sleep_lib.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: sin.h

@@ -41,7 +41,7 @@
          return;
  }
  
- uint16_t recieve_usart(void)
+ uint16_t receive_usart(void)
  {
      
      if((USART3->SR & USART_SR_RXNE) == USART_SR_RXNE)
@@ -54,7 +54,7 @@
  void USART3_IRQHandler(void){
 
      GPIOC->ODR |= GPIO_ODR_ODR8;		// set Blue LED onboard
-     buffer[k] = recieve_usart();		// enter first byte to buffer
+     buffer[k] = receive_usart();		// enter first byte to buffer
      if(buffer[0]==0x7e){						// check to make sure it is a packet
          if (k==2){
              bsize = buffer[k]+3;				// get the packet length
@@ -119,7 +119,7 @@
      
  }
  
-void XbeeRecieve(RXD *recieved)
+void XbeeReceive(RXD *received)
  {
      uint8_t frametype;
         frametype = buffer[FRAME_ADDRESS];
@@ -144,15 +144,15 @@ void XbeeRecieve(RXD *recieved)
 
     for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
     {
-         recieved->address[i]=usebuffer[i+4];
+         received->address[i]=usebuffer[i+4];
     }
-     recieved->length=0;
+     received->length=0;
     if(frametype == 0x90)
         {
             for(int j=DATA_ADDRESS;j<usebsize;j++)
             {
-                recieved->data[j-DATA_ADDRESS] = usebuffer[j];
-                recieved->length++;
+                received->data[j-DATA_ADDRESS] = usebuffer[j];
+                received->length++;
             }
             
     // Need these last lines			
