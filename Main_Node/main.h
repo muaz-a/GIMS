@@ -12,6 +12,7 @@
 #include <stdlib.h> 
 #include <stdio.h>
 #include "string.h"
+#include "sin.h"
 
 
 
@@ -28,7 +29,8 @@ typedef enum
 	SEND_SYNCH_2,
 	INDEX_3,
 	STAGGER_RESP_4,
-	STOP_5				// used for testing
+	LISTEN_5,
+	ANALYZE_6
 } state;
 
 #endif

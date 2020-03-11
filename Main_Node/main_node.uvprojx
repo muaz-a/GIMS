@@ -432,6 +432,16 @@
               <FileType>5</FileType>
               <FilePath>.\sleep_lib.h</FilePath>
             </File>
+            <File>
+              <FileName>sin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\sin.c</FilePath>
+            </File>
+            <File>
+              <FileName>sin.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\sin.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
