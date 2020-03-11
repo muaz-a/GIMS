@@ -118,78 +118,81 @@ uint16_t recieve_usart(void)
  }
  
 void XbeeRecieve(RXD *recieved)
- {
-   uint8_t frametype;
-     uint8_t rxdRF[RXD_LENGTH];
-    int rxdsize= 0;
-     bool device1, device2;
-    frametype = buffer[FRAME_ADDRESS];
-     uint8_t usebuffer[PACKET_LENGTH];
-    uint8_t usebsize = PACKET_LENGTH;
+{
+  uint8_t frametype;
+  uint8_t rxdRF[RXD_LENGTH];
+  int rxdsize= 0;
+  bool device1, device2;
+  frametype = buffer[FRAME_ADDRESS];
+  uint8_t usebuffer[PACKET_LENGTH];
+  uint8_t usebsize = PACKET_LENGTH;
 
-    while(!bfull)      // wait unit buffer is full
-            {
-              
-            }
-            usebsize = bsize;    // copy data to avoid buffer being changed by interrupt
-            for(int m=0; m<usebsize;m++)
-            {
-              usebuffer[m] = buffer[m];
-              buffer[m] = 0x00;
-            }  
-            bfull = false;          // reset buffer full flag
-   
-   for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
-   {      
-      if(usebuffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
-        {    
-          device1 = true;    // used for printing to LCD
-          recieved->device = 1;
-        } else 
-        {
-          device1 = false;  // used for printing to LCD
-        }
-      if (usebuffer[i+4] == ED2[i])// check for End Device 2 match, set flag if matches
-        {    
-          device2 = true;    // used for printing to LCD
-          recieved->device = 2;
-        } else
-        { 
-          device2 = false;    // used for printing to LCD
-        }
+  while(!bfull)      // wait unit buffer is full
+  {
+
+  }
+  usebsize = bsize;    // copy data to avoid buffer being changed by interrupt
+
+  for(int m=0; m<usebsize;m++)
+  {
+    usebuffer[m] = buffer[m];
+    buffer[m] = 0x00;
+  }  
+  bfull = false;          // reset buffer full flag
+
+  frametype = usebuffer[FRAME_ADDRESS];
+
+  for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
+  {      
+    if(usebuffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
+      {    
+        device1 = true;    // used for printing to LCD
+        recieved->device = 1;
+      } else 
+      {
+        device1 = false;  // used for printing to LCD
+      }
+    if (usebuffer[i+4] == ED2[i])// check for End Device 2 match, set flag if matches
+      {    
+        device2 = true;    // used for printing to LCD
+        recieved->device = 2;
+      } else
+      { 
+        device2 = false;    // used for printing to LCD
+      }
   }
    
-  if(frametype == 0x90)
+  if(frametype == 0x90) // Packet type = 'Receive Packet'
     {
-      for(int j=DATA_ADDRESS;j<usebsize;j++)
-        {
-          rxdRF[j-DATA_ADDRESS] = usebuffer[j];    // used for printing to LCD
-          recieved->data[j-DATA_ADDRESS] = usebuffer[j];
-          recieved->length++;
-          rxdsize++;          // used for printing to LCD
-        }
+      for(int j=DATA_ADDRESS; j < usebsize; j++)
+      {
+        rxdRF[j-DATA_ADDRESS] = usebuffer[j];    // used for printing to LCD
+        recieved->data[j-DATA_ADDRESS] = usebuffer[j];
+        recieved->length++;
+        rxdsize++;          // used for printing to LCD
+      }
         
 // Code used for Printing to LCD. Can be commented out        
-      if(device1)
-        {            // if device 1 matches, print to LCD
-          ToLCD(LCD_CLR, 0);
-          stringToLCD("End Device 1:");
-        }
-      if(device2)
-        {            // if device 2 matches, print to LCD
-          ToLCD(LCD_CLR, 0);
-          stringToLCD("End Device 2:");          
-        }
-      ToLCD(LCD_LN2, 0);    // print if pin9 was ON or OFF depending on IO flag
-      for(int t=0; t<  rxdsize; t++)
-        {
-          ToLCD(rxdRF[t], 1);
-        }        
-      
-      ToLCD(LCD_LN1, 0);    // reset cursor and buffer full flag
+//      if(device1)
+//        {            // if device 1 matches, print to LCD
+//          ToLCD(LCD_CLR, 0);
+//          stringToLCD("End Device 1:");
+//        }
+//      if(device2)
+//        {            // if device 2 matches, print to LCD
+//          ToLCD(LCD_CLR, 0);
+//          stringToLCD("End Device 2:");          
+//        }
+//      ToLCD(LCD_LN2, 0);    // print if pin9 was ON or OFF depending on IO flag
+//      for(int t=0; t<  rxdsize; t++)
+//        {
+//          ToLCD(rxdRF[t], 1);
+//        }        
+//      
+//      ToLCD(LCD_LN1, 0);    // reset cursor and buffer full flag
       
   // Need these last lines      
-        bfull= false;
+      bfull= false;
 
     }
     

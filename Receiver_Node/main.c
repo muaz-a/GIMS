@@ -13,6 +13,8 @@ int main() {
   ADCInit();
   timerInit();
   usartInit();
+    
+  char dispBuf[5];
   
   // Comms setup
   uint8_t coAddr[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -37,26 +39,48 @@ int main() {
         while(next_state == WAIT_CO_1)
         {
           ToLCD(LCD_CLR, 0);
-          stringToLCD("Waiting for CO");
+          stringToLCD("Waiting for CO");          
           // will have to wait indefinitely here until receive signal from CO
           XbeeRecieve(&Received);
-          ToLCD(LCD_CLR, 0);
-          stringToLCD("Received Something!");  
+          
+          
+          // To test message receiving and sending
+          
+          /*ToLCD(LCD_CLR, 0);
+          stringToLCD("Buf size: ");
+          sprintf(dispBuf, "%d", Received.length);
+          stringToLCD(dispBuf);
+          delay(24000000);
+          ToLCD(LCD_LN2, 0);
+          
+          for (int i=0; i < Received.length; i++)
+          {            
+            ToLCD(Received.data[i], 1);
+            xbeeSend(coAddr, sizeof(Received.data[i]), &Received.data[i]); 
+            delay(12000000);
+          } */                          
+          
+          
           if(Received.length != 1 || Received.data[0] != SYNCH)
           {
             next_state = ERROR_STATE;
+            ToLCD(LCD_CLR, 0);
+            stringToLCD("ERROR STATE");
+            delay(9999999);
             break;
           }
           
-          if(Received.data[0] == '1')
+          if(Received.data[0] == SYNCH)
           {
             ToLCD(LCD_CLR, 0);
-            stringToLCD("RCVD 1 to CO");  
-            delay(9999999);
+            stringToLCD("RCVD from CO: ");  
+            ToLCD(SYNCH, 1);
+            delay(4000000);
             xbeeSend(coAddr, sizeof(SYNCH), (char *)SYNCH); 
             ToLCD(LCD_CLR, 0);
             stringToLCD("SENT 1 to CO");  
-          }                   
+            delay(4000000);
+          }                 
         }
         break;
         

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Mar 09 19:02:19 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Mar 11 08:06:24 2020
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -436,7 +436,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[55]"></a>__printf</STRONG> (Thumb, 270 bytes, Stack size 32 bytes, __printf_wp.o(.text))
@@ -452,7 +452,7 @@ Global Symbols
 <P><STRONG><a name="[95]"></a>strlen</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, strlen.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strlen
 </UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 </UL>
 
 <P><STRONG><a name="[d6]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -610,7 +610,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
 </UL>
 
-<P><STRONG><a name="[8f]"></a>ADCInit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCInit))
+<P><STRONG><a name="[8e]"></a>ADCInit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCInit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -637,7 +637,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
 <P><STRONG><a name="[76]"></a>ConfigureDMA</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, dac.o(i.ConfigureDMA))
@@ -646,19 +646,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
-<P><STRONG><a name="[8a]"></a>ConfigureGPIO</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dac.o(i.ConfigureGPIO))
-<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<P><STRONG><a name="[89]"></a>ConfigureGPIO</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dac.o(i.ConfigureGPIO))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
-<P><STRONG><a name="[8b]"></a>ConfigureGPIOasAnalog</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, dac.o(i.ConfigureGPIOasAnalog))
-<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<P><STRONG><a name="[8a]"></a>ConfigureGPIOasAnalog</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, dac.o(i.ConfigureGPIOasAnalog))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
-<P><STRONG><a name="[8c]"></a>ConfigureTIM6</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dac.o(i.ConfigureTIM6))
-<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<P><STRONG><a name="[8b]"></a>ConfigureTIM6</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dac.o(i.ConfigureTIM6))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
 <P><STRONG><a name="[1b]"></a>DMA1_Channel3_IRQHandler</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, dac.o(i.DMA1_Channel3_IRQHandler))
@@ -672,7 +672,7 @@ Global Symbols
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeSinusPolynomialApprox
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 </UL>
 
 <P><STRONG><a name="[7a]"></a>LCDInit</STRONG> (Thumb, 144 bytes, Stack size 4 bytes, lcd.o(i.LCDInit))
@@ -701,11 +701,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeRecieve
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[31]"></a>USART3_IRQHandler</STRONG> (Thumb, 120 bytes, Stack size 4 bytes, xbee.o(i.USART3_IRQHandler))
@@ -715,16 +714,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
-<P><STRONG><a name="[80]"></a>XbeeRecieve</STRONG> (Thumb, 266 bytes, Stack size 80 bytes, xbee.o(i.XbeeRecieve))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = XbeeRecieve &rArr; stringToLCD &rArr; strlen
-</UL>
-<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
+<P><STRONG><a name="[92]"></a>XbeeRecieve</STRONG> (Thumb, 194 bytes, Stack size 68 bytes, xbee.o(i.XbeeRecieve))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = XbeeRecieve
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[92]"></a>XbeeSetUp</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, xbee.o(i.XbeeSetUp))
+<P><STRONG><a name="[91]"></a>XbeeSetUp</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, xbee.o(i.XbeeSetUp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = XbeeSetUp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -738,43 +734,43 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
 </UL>
 
-<P><STRONG><a name="[82]"></a>calcSignal</STRONG> (Thumb, 592 bytes, Stack size 128 bytes, main.o(i.calcSignal))
+<P><STRONG><a name="[80]"></a>calcSignal</STRONG> (Thumb, 592 bytes, Stack size 128 bytes, main.o(i.calcSignal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = calcSignal &rArr; dacInit &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readADC
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readADC
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dacInit
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8d]"></a>clockInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, clocks.o(i.clockInit))
+<P><STRONG><a name="[8c]"></a>clockInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, clocks.o(i.clockInit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[89]"></a>dacInit</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, dac.o(i.dacInit))
+<P><STRONG><a name="[88]"></a>dacInit</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, dac.o(i.dacInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = dacInit &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GenerateWave
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureTIM6
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIOasAnalog
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureTIM6
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIOasAnalog
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureGPIO
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureDMA
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureDAC
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[7e]"></a>delay</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, lcd.o(i.delay))
@@ -786,34 +782,34 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4d]"></a>main</STRONG> (Thumb, 260 bytes, Stack size 72 bytes, main.o(i.main))
+<P><STRONG><a name="[4d]"></a>main</STRONG> (Thumb, 280 bytes, Stack size 72 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
 <LI>Call Chain = main &rArr; calcSignal &rArr; dacInit &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeSetUp
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeRecieve
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeSetUp
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeRecieve
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;detect_btn_press
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[8e]"></a>portInit</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, clocks.o(i.portInit))
+<P><STRONG><a name="[8d]"></a>portInit</STRONG> (Thumb, 78 bytes, Stack size 0 bytes, clocks.o(i.portInit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[83]"></a>readADC</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, adc.o(i.readADC))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<P><STRONG><a name="[81]"></a>readADC</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, adc.o(i.readADC))
+<BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[7f]"></a>recieve_usart</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, xbee.o(i.recieve_usart))
@@ -824,22 +820,21 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
 </UL>
 
-<P><STRONG><a name="[81]"></a>stringToLCD</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, lcd.o(i.stringToLCD))
+<P><STRONG><a name="[85]"></a>stringToLCD</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, lcd.o(i.stringToLCD))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = stringToLCD &rArr; strlen
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
 </UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeRecieve
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
-<P><STRONG><a name="[90]"></a>timerInit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, clocks.o(i.timerInit))
+<P><STRONG><a name="[8f]"></a>timerInit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, clocks.o(i.timerInit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[91]"></a>usartInit</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.usartInit))
+<P><STRONG><a name="[90]"></a>usartInit</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.usartInit))
 <BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -886,7 +881,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeSinusPolynomialApprox
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[9e]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -894,10 +889,10 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[87]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
+<P><STRONG><a name="[86]"></a>__aeabi_d2iz</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2iz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[9f]"></a>_dfix</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix), UNUSED)
@@ -908,30 +903,30 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2uiz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GenerateWave
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[a0]"></a>_dfixu</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, dfixu.o(x$fpl$dfixu), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[88]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<P><STRONG><a name="[87]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
+<BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[e0]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt), UNUSED)
 
 <P><STRONG><a name="[78]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GenerateWave
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[e1]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[85]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
+<P><STRONG><a name="[83]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[a1]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
@@ -948,7 +943,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GenerateWave
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeSinusPolynomialApprox
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[a3]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul), UNUSED)
@@ -974,20 +969,20 @@ Global Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 </UL>
 
-<P><STRONG><a name="[84]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
+<P><STRONG><a name="[82]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[a4]"></a>_drcmple</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmple_InfNaN
 </UL>
 
-<P><STRONG><a name="[86]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
+<P><STRONG><a name="[84]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dsub
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[a6]"></a>_dsub</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub), UNUSED)
