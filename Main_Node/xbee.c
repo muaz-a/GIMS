@@ -108,7 +108,7 @@
      send_usart(bit16add2);
      send_usart(0x00);
      send_usart(0x00);
-             for(int i = 0; i <msg_leng;i++)
+     for(int i = 0; i <msg_leng;i++)
      {
          send_usart(message[i]);
      }
@@ -121,42 +121,44 @@
  
 void XbeeReceive(RXD *received)
  {
-     uint8_t frametype;
-        frametype = buffer[FRAME_ADDRESS];
-        uint8_t usebuffer[PACKET_LENGTH];
-        uint8_t usebsize = PACKET_LENGTH;
+    uint8_t frametype;
+		int rxdsize= 0;
+		uint8_t usebuffer[PACKET_LENGTH];
+		uint8_t usebsize = PACKET_LENGTH;
 
-        while(!bfull && !alarm)			// wait unit buffer is full
-        {
-            
-        }
-        
-        if (alarm) 
-            return;
-        
-        usebsize = bsize;		// copy data to avoid buffer being changed by interrupt
-        for(int m=0; m<usebsize;m++)
-        {
-            usebuffer[m] = buffer[m];
-            buffer[m] = 0x00;
-        }	
-        bfull = false;					// reset buffer full flag
+		while(!bfull && !alarm)			// wait unit buffer is full
+		{
+				
+		}
+		
+		if (alarm) 
+				return;
+		
+		usebsize = bsize;		// copy data to avoid buffer being changed by interrupt
+		for(int m=0; m<usebsize;m++)
+		{
+				usebuffer[m] = buffer[m];
+				buffer[m] = 0x00;
+		}	
+		bfull = false;					// reset buffer full flag
+		frametype = usebuffer[FRAME_ADDRESS];
 
     for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
     {
          received->address[i]=usebuffer[i+4];
     }
      received->length=0;
+		
     if(frametype == 0x90)
         {
-            for(int j=DATA_ADDRESS;j<usebsize;j++)
-            {
-                received->data[j-DATA_ADDRESS] = usebuffer[j];
-                received->length++;
-            }
+					for(int j=DATA_ADDRESS;j<usebsize;j++)
+					{
+							received->data[j-DATA_ADDRESS] = usebuffer[j];
+							received->length++;
+					}
             
     // Need these last lines			
-                bfull= false;
+					bfull= false;
 
         }
  }

@@ -17,7 +17,7 @@ int main(void)
 {
     uint8_t num = 0;
     NODE *Devices;
-    uint8_t BROADCAST[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xF};
+    uint8_t BROADCAST[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF};
     uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
     uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
     
@@ -50,19 +50,12 @@ int main(void)
             case INDEX_3:
                 num = indexED(Devices);
                 commandToLCD(LCD_CLR);
-                stringToLCD("End Device 1:");
-                for(int t=0; t<num; t++)
-                {
-                    stringToLCD("End Device ");
-                    dataToLCD(t+1);
-                    stringToLCD(":");
-                    commandToLCD(LCD_LN2);
-                    dataToLCD(Devices[0].address[7+t]);
-                    
-                }
+                stringToLCD("End Device :");
+								dataToLCD(num+0x30);
                 if (num==0)
                     stringToLCD("No End Devices");
                 next_state = STAGGER_RESP_4;
+								while(1);
                 break;
             case STAGGER_RESP_4:
                 stagger(num, Devices);
@@ -98,14 +91,16 @@ uint8_t indexED(NODE *Device)
             XbeeReceive(&Received);
             if(Received.data[0] == SYNCH)
             {
-                Device = (NODE*) realloc(Device, sizeof(NODE)*(num+1));
+                //Device = (NODE*) realloc(Device, sizeof(NODE)*(num+1));
                 Device[num].status = RDY;
+								Device[num].index = num+1;
                 for(i=0;i<ADDRESS_LENGTH;i++)
                 {
                     Device[num].address[i] = Received.address[i];
                 }
+								num++;
             }
-            num++;
+            
         }
         alarm = 0;
         Disable_RTC();
