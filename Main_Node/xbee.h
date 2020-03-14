@@ -33,7 +33,7 @@ typedef enum {
 
 // NODE used for Receiver Information
 typedef struct{
-	uint8_t address[8];
+	uint8_t address[ADDRESS_LENGTH];
 	int index;
 	Status status;
     uint8_t freq;
@@ -41,13 +41,13 @@ typedef struct{
 } NODE;
 // Struct RXD used to hold Received data
 typedef struct{
-	uint8_t address[8];
-	char data[20];
+	uint8_t address[ADDRESS_LENGTH];
+	char data[RXD_LENGTH];
 	int length;
 }RXD;
 
 extern volatile uint8_t alarm;
-extern uint8_t buffer[30];
+extern volatile uint8_t buffer[PACKET_LENGTH];
 extern uint8_t bsize;
 extern bool bfull;
 
@@ -74,7 +74,7 @@ void USART3_IRQHandler(void);
 // For Main_Node: address to specific Receiver
 // For Receiver Node: address = 0x 00 00 00 00 00 00 00 00 to send to Main_Node
 // Creates a packet of data for API command with message and sends
-void xbeeSend(uint8_t address[], int msg_leng,char *message);
+void xbeeSend(uint8_t address[], int msg_leng, char *message);
 
 // XbeeReceive takes the buffer, buffersize and received struct
 // Goes through packet and extracts data into received struct

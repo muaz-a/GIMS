@@ -1,12 +1,6 @@
 #include "main.h"
 
-typedef enum 
-{
-    SYNCH = '1',
-    REQ = '2',
-    RESP  = '3',
-    OTHER = '4'
-} message;
+
 
 uint8_t indexED(NODE *);
 void stagger(uint8_t, NODE *);
@@ -53,9 +47,15 @@ int main(void)
                 stringToLCD("End Device :");
 								dataToLCD(num+0x30);
                 if (num==0)
+								{		
+										commandToLCD(LCD_CLR);
                     stringToLCD("No End Devices");
-                next_state = STAGGER_RESP_4;
-								while(1);
+										commandToLCD(LCD_LN2);
+										stringToLCD("Check Node Connections");
+										next_state = POWER_UP_1;
+                }
+								else	next_state = STAGGER_RESP_4;
+								
                 break;
             case STAGGER_RESP_4:
                 stagger(num, Devices);
@@ -98,6 +98,7 @@ uint8_t indexED(NODE *Device)
                 {
                     Device[num].address[i] = Received.address[i];
                 }
+							Received.data[0] = ERROR;
 								num++;
             }
             
@@ -109,20 +110,34 @@ uint8_t indexED(NODE *Device)
 
 void stagger(uint8_t num, NODE * Devices)
 {
+	RXD Received;
+	
     commandToLCD(LCD_CLR);
     stringToLCD("Stagger Start");
     for(int j = 0; j < num; j++)
     {
         xbeeSend(Devices[j].address,1,"2");
         Devices[j].status=WAITING;
-        if ((j+1)<num)
+				alarm=0;
+        Configure_RTC(RXDTIM);
+				XbeeReceive(&Received);
+				Disable_RTC();
+				if (alarm || Received.data[0]!=SLEEP)
         {
             alarm=0;
-            Configure_RTC(5);
-            while(!alarm);
-            Disable_RTC();
-            alarm=0;
+            Devices[j].status=TIMEOUT;
+						xbeeSend(Devices[j].address,1,"4");
         }
+				
+				if ((j+1)<num)
+				{
+						alarm=0;
+						Configure_RTC(STAGGER);
+						while(!alarm);
+						Disable_RTC();
+						alarm=0;
+				}
+				
     }
 }
 
@@ -131,11 +146,17 @@ void listen(uint8_t num, NODE * Devices)
     RXD Received;
     alarm = 0;
     commandToLCD(LCD_CLR);
-    Configure_RTC(302-(5*(num-1)));
-    stringToLCD("Waiting for request");
+		Configure_RTC(302-(STAGGER*(num-1)));		// ~5 minutes
+    stringToLCD("Waiting for");
+		commandToLCD(LCD_LN2);
+		stringToLCD("request");
     for(int j = 0; j < num; j++)
     {
         XbeeReceive(&Received);
+				if(Received.data[0] == RESP)
+				{
+					xbeeSend(Received.address,1,"3");
+				}
         commandToLCD(LCD_CLR);
         if (alarm)
         {
@@ -154,7 +175,7 @@ void listen(uint8_t num, NODE * Devices)
             Devices[j].status=RDY;
             commandToLCD(LCD_CLR);
             stringToLCD("Send: ");
-            dataToLCD(j+1);
+            dataToLCD((j+1)+0x30);
             Configure_RTC(2);
             sine(1);
             XbeeReceive(&Received);
@@ -168,7 +189,7 @@ void listen(uint8_t num, NODE * Devices)
         if ((j+1)<num)
         {
             alarm=0;
-            Configure_RTC(5);
+            Configure_RTC(STAGGER);
         }
     }
 }

@@ -2,6 +2,14 @@
 #define MAIN_H
 
 #define DEBUG
+#define STAGGER 10
+#define RXDTIM 1
+
+
+#define SYNCH '1'
+#define SLEEP '2'
+#define RESP '3'
+#define ERR '4'
 
 #include "init_lib.h"
 #include "xbee.h"
@@ -16,11 +24,12 @@
 
 
 
-extern uint8_t buffer[PACKET_LENGTH];
+extern volatile uint8_t buffer[PACKET_LENGTH];
 extern uint8_t bsize;
 extern int bcount;
 extern bool bfull;
 extern volatile uint8_t alarm;
+
 
 
 typedef enum

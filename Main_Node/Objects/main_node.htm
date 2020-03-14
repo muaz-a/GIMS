@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\main_node.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\main_node.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Mar 11 20:19:55 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Mar 13 17:18:05 2020
 <BR><P>
-<H3>Maximum Stack Usage =        192 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 <P>
@@ -201,7 +201,7 @@ Global Symbols
 <P><STRONG><a name="[a4]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[41]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -507,7 +507,7 @@ Global Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;indexED
 </UL>
 
-<P><STRONG><a name="[64]"></a>Disable_RTC</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, sleep_lib.o(i.Disable_RTC))
+<P><STRONG><a name="[64]"></a>Disable_RTC</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, sleep_lib.o(i.Disable_RTC))
 <BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stagger
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;indexED
@@ -541,7 +541,8 @@ Global Symbols
 <P><STRONG><a name="[63]"></a>XbeeReceive</STRONG> (Thumb, 138 bytes, Stack size 52 bytes, xbee.o(i.XbeeReceive))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = XbeeReceive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stagger
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;indexED
 </UL>
 
@@ -549,7 +550,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6a]"></a>clockInit</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, init_lib.o(i.clockInit))
+<P><STRONG><a name="[6b]"></a>clockInit</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, init_lib.o(i.clockInit))
 <BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -583,8 +584,8 @@ Global Symbols
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandToLCD
 </UL>
 
-<P><STRONG><a name="[60]"></a>indexED</STRONG> (Thumb, 114 bytes, Stack size 48 bytes, main.o(i.indexED))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = indexED &rArr; XbeeReceive
+<P><STRONG><a name="[60]"></a>indexED</STRONG> (Thumb, 120 bytes, Stack size 40 bytes, main.o(i.indexED))
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = indexED &rArr; XbeeReceive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandToLCD
@@ -612,16 +613,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initLCD
 </UL>
 
-<P><STRONG><a name="[6b]"></a>init_usart</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.init_usart))
+<P><STRONG><a name="[6c]"></a>init_usart</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.init_usart))
 <BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[67]"></a>listen</STRONG> (Thumb, 234 bytes, Stack size 48 bytes, main.o(i.listen))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
+<P><STRONG><a name="[67]"></a>listen</STRONG> (Thumb, 268 bytes, Stack size 40 bytes, main.o(i.listen))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sineOff
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sineOff
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dataToLCD
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandToLCD
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeReceive
@@ -631,16 +633,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 224 bytes, Stack size 24 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = main &rArr; listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
+<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 248 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = main &rArr; listen &rArr; sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_usart
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_usart
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initLCD
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dataToLCD
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandToLCD
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stagger
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;indexED
@@ -654,7 +656,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[73]"></a>send_usart</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, xbee.o(i.send_usart))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
 </UL>
 
 <P><STRONG><a name="[6f]"></a>sinGen</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, sin.o(i.sinGen))
@@ -665,10 +667,10 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureDMA
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigureDAC
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine
+<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine
 </UL>
 
-<P><STRONG><a name="[68]"></a>sine</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sin.o(i.sine))
+<P><STRONG><a name="[69]"></a>sine</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sin.o(i.sine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = sine &rArr; sinGen &rArr; GenerateWave &rArr; ComputeSinusPolynomialApprox &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sinGen
@@ -676,7 +678,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 </UL>
 
-<P><STRONG><a name="[69]"></a>sineOff</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, sin.o(i.sineOff))
+<P><STRONG><a name="[6a]"></a>sineOff</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, sin.o(i.sineOff))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = sineOff
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_DisableIRQ
@@ -684,12 +686,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 </UL>
 
-<P><STRONG><a name="[6d]"></a>stagger</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, main.o(i.stagger))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = stagger &rArr; xbeeSend
+<P><STRONG><a name="[6d]"></a>stagger</STRONG> (Thumb, 154 bytes, Stack size 40 bytes, main.o(i.stagger))
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = stagger &rArr; XbeeReceive
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandToLCD
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeReceive
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_RTC
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Configure_RTC
 </UL>
@@ -710,13 +713,14 @@ Global Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;indexED
 </UL>
 
-<P><STRONG><a name="[6c]"></a>xbeeSend</STRONG> (Thumb, 192 bytes, Stack size 48 bytes, xbee.o(i.xbeeSend))
+<P><STRONG><a name="[68]"></a>xbeeSend</STRONG> (Thumb, 192 bytes, Stack size 48 bytes, xbee.o(i.xbeeSend))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = xbeeSend
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_usart
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stagger
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;listen
 </UL>
 
 <P><STRONG><a name="[50]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
@@ -861,7 +865,7 @@ Global Symbols
 Local Symbols
 </H3>
 <P><STRONG><a name="[71]"></a>__NVIC_DisableIRQ</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, sin.o(i.__NVIC_DisableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sineOff
+<BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sineOff
 </UL>
 
 <P><STRONG><a name="[57]"></a>__NVIC_EnableIRQ</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, sin.o(i.__NVIC_EnableIRQ))

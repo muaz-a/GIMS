@@ -2,7 +2,7 @@
 
 
 // Globals used to pass buffer data from UART_IRQHandler
-    uint8_t buffer[30];
+    volatile uint8_t buffer[30];
     uint8_t bsize = 30;
     bool bfull = false;
     static int k = 0;		// buffer index
