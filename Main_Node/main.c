@@ -42,10 +42,10 @@ int main(void)
                 break;
             
             case INDEX_3:
-                num = indexED(Devices);
+                num = indexED(Devices);					// indexes ED and returns number of ED
                 commandToLCD(LCD_CLR);
                 stringToLCD("End Device :");
-								dataToLCD(num+0x30);
+								dataToLCD(num+0x30);						// print number of ED's
                 if (num==0)
 								{		
 										commandToLCD(LCD_CLR);
@@ -58,16 +58,16 @@ int main(void)
 								
                 break;
             case STAGGER_RESP_4:
-                stagger(num, Devices);
+                stagger(num, Devices);					// stagger ED for sleep
                 next_state = LISTEN_5;
                 break;
                         
             case LISTEN_5:
-                listen(num, Devices);
+                listen(num, Devices);						// wait for ED's to wake to send Sine Signal
                 next_state = ANALYZE_6;
                 break;
              case ANALYZE_6:
-                analyze(num, Devices);
+                analyze(num, Devices);					// analyze the data recieved from ED's
                 next_state = STAGGER_RESP_4;
                 break;
         }
@@ -120,16 +120,16 @@ void stagger(uint8_t num, NODE * Devices)
         Devices[j].status=WAITING;
 				alarm=0;
         Configure_RTC(RXDTIM);
-				XbeeReceive(&Received);
+				XbeeReceive(&Received);						// check for response
 				Disable_RTC();
-				if (alarm || Received.data[0]!=SLEEP)
+				if (alarm || Received.data[0]!=SLEEP)			// Checking if timeout or received wrong data
         {
             alarm=0;
             Devices[j].status=TIMEOUT;
-						xbeeSend(Devices[j].address,1,"4");
+						xbeeSend(Devices[j].address,1,"4");			// send error to ED
         }
 				
-				if ((j+1)<num)
+				if ((j+1)<num)						// delay between ED for all but last device
 				{
 						alarm=0;
 						Configure_RTC(STAGGER);
@@ -152,36 +152,36 @@ void listen(uint8_t num, NODE * Devices)
 		stringToLCD("request");
     for(int j = 0; j < num; j++)
     {
-        XbeeReceive(&Received);
-				if(Received.data[0] == RESP)
+        XbeeReceive(&Received);							// wait for ED to send Resp ("3")
+				if(Received.data[0] == RESP)				// make sure "3" was recieved
 				{
 					xbeeSend(Received.address,1,"3");
 				}
         commandToLCD(LCD_CLR);
-        if (alarm)
+        if (alarm)							// check if alarm has gone
         {
             Disable_RTC();
             alarm=0;
-            Devices[j].status=TIMEOUT;
+            Devices[j].status=TIMEOUT;				// if timed out set device status
         }
         else
         {
             Disable_RTC();
-            while(Devices[j].address != Received.address)
+            while(Devices[j].address != Received.address)		// find what device recieved from
             {
-               Devices[j].status=TIMEOUT;
+               Devices[j].status=TIMEOUT;										// if not in order loop until ED is found and mark others as timed out
                 j++;
             }
-            Devices[j].status=RDY;
+            Devices[j].status=RDY;													
             commandToLCD(LCD_CLR);
             stringToLCD("Send: ");
             dataToLCD((j+1)+0x30);
-            Configure_RTC(2);
-            sine(1);
-            XbeeReceive(&Received);
-            Devices[j].freq = Received.data[1];
+						sine(1);																			// send sine signal
+            Configure_RTC(SINTIM);						
+            XbeeReceive(&Received);												// wait for response
+            Devices[j].freq = Received.data[1];						// gather freq and amplitude data
             Devices[j].ampl = (Received.data[2]<<8)|Received.data[3];
-            while(!alarm);
+            while(!alarm);																// loop if timer hasn't finished
             Disable_RTC();
             alarm=0;
             sineOff();
@@ -196,8 +196,25 @@ void listen(uint8_t num, NODE * Devices)
 
 void analyze(uint8_t num, NODE * Devices)
 {
+	int NoResp = 0;
+	
+		commandToLCD(LCD_CLR);
+		stringToLCD("Analyze Data");
+		delay(1200000);
     for(int j = 0; j < num; j++)
     {
-        
+				commandToLCD(LCD_CLR);
+				if(Devices[j].status==TIMEOUT)
+				{
+					NoResp++;
+					if(NoResp==0)						// list any devices that are timed out
+					{
+						stringToLCD("Device Timeout: ");
+					}
+					dataToLCD(j+1+0x30);
+					stringToLCD(", ");
+				}
     }
+		
+		
 }

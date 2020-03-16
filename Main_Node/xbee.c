@@ -122,7 +122,6 @@
 void XbeeReceive(RXD *received)
  {
     uint8_t frametype;
-		int rxdsize= 0;
 		uint8_t usebuffer[PACKET_LENGTH];
 		uint8_t usebsize = PACKET_LENGTH;
 
