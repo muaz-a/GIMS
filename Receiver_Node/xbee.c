@@ -119,6 +119,7 @@ uint16_t recieve_usart(void)
  
 int XbeeRecieve(RXD *recieved, uint32_t delay)
 {
+	recieved->length = 0;
   uint8_t frametype;
   uint8_t rxdRF[RXD_LENGTH];
   int rxdsize= 0;
@@ -136,7 +137,8 @@ int XbeeRecieve(RXD *recieved, uint32_t delay)
   } else {
     for(int i = 0; i < delay; i++)
     {
-      
+      if(bfull)
+				break;
     }
     if (!bfull)
       return -1; // error - didn't receive in alotted ticks
