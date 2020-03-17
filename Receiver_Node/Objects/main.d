@@ -17,3 +17,4 @@
 .\objects\main.o: dac.h
 .\objects\main.o: xbee.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: sleep.h

@@ -1,6 +1,6 @@
 Dependencies for Project 'Project', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5E68F05F)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (main.h)(0x5E66D9C1)
+F (.\main.c)(0x5E701E70)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (main.h)(0x5E6E8F18)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
@@ -16,9 +16,10 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Includ
 I (lcd.h)(0x5E66BEDC)
 I (adc.h)(0x5E66D493)
 I (dac.h)(0x5E66BEDC)
-I (xbee.h)(0x5E66D4BF)
+I (xbee.h)(0x5E6E8638)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
-F (.\main.h)(0x5E66D9C1)()
+I (sleep.h)(0x5E6E7D3B)
+F (.\main.h)(0x5E6E8F18)()
 F (.\lcd.h)(0x5E66BEDC)()
 F (.\lcd.c)(0x5E66D493)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
 I (lcd.h)(0x5E66BEDC)
@@ -66,8 +67,8 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
-F (.\xbee.c)(0x5E686CA8)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\xbee.o --omf_browse .\objects\xbee.crf --depend .\objects\xbee.d)
-I (xbee.h)(0x5E66D4BF)
+F (.\xbee.c)(0x5E6E8642)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\xbee.o --omf_browse .\objects\xbee.crf --depend .\objects\xbee.d)
+I (xbee.h)(0x5E6E8638)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5E66BFD3)
@@ -79,7 +80,24 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Includ
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
 I (lcd.h)(0x5E66BEDC)
-F (.\xbee.h)(0x5E66D4BF)()
+F (.\xbee.h)(0x5E6E8638)()
+F (.\sleep.c)(0x5E6E8F02)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\sleep.o --omf_browse .\objects\sleep.crf --depend .\objects\sleep.d)
+I (sleep.h)(0x5E6E7D3B)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5E66BFD3)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h)(0x5C9012B4)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h)(0x5B97D924)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
+I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
+I (clocks.h)(0x5E66BEDC)
+I (lcd.h)(0x5E66BEDC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
+I (xbee.h)(0x5E6E8638)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
+I (adc.h)(0x5E66D493)
+F (.\sleep.h)(0x5E6E7D3B)()
 F (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Lib\ARM\arm_cortexM3l_math.lib)(0x5C8C24D8)()
 F (RTE\Device\STM32F100RB\RTE_Device.h)(0x5E66BEDB)()
 F (RTE\Device\STM32F100RB\startup_stm32f10x_md_vl.s)(0x5E66BEDB)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 527" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD_VL SETA 1"--list .\listings\startup_stm32f10x_md_vl.lst --xref -o .\objects\startup_stm32f10x_md_vl.o --depend .\objects\startup_stm32f10x_md_vl.d)

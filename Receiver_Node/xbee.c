@@ -117,7 +117,7 @@ uint16_t recieve_usart(void)
    
  }
  
-void XbeeRecieve(RXD *recieved)
+int XbeeRecieve(RXD *recieved, uint32_t delay)
 {
   uint8_t frametype;
   uint8_t rxdRF[RXD_LENGTH];
@@ -127,10 +127,22 @@ void XbeeRecieve(RXD *recieved)
   uint8_t usebuffer[PACKET_LENGTH];
   uint8_t usebsize = PACKET_LENGTH;
 
-  while(!bfull)      // wait unit buffer is full
+  if (delay == 0)
   {
+    while(!bfull)      // wait unit buffer is full
+    {
 
+    }
+  } else {
+    for(int i = 0; i < delay; i++)
+    {
+      
+    }
+    if (!bfull)
+      return -1; // error - didn't receive in alotted ticks
   }
+  
+  
   usebsize = bsize;    // copy data to avoid buffer being changed by interrupt
 
   for(int m=0; m<usebsize;m++)
@@ -196,7 +208,7 @@ void XbeeRecieve(RXD *recieved)
 
     }
     
-   return;
+   return 0;
  }
  
  void XbeeSetUp(NODE Devices[])

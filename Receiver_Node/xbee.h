@@ -72,7 +72,10 @@ void xbeeSend(uint8_t address[], int msg_leng,char *message);
 // XbeeRecieve takes the buffer, buffersize and recieved struct
 // Goes through packet and extracts data into recieved struct
 // Struct includes: device #, data, data length.
-void XbeeRecieve(RXD *recieved);
+// Also takes the max clock ticks it will wait before time out. If it does
+// timeout, it will return -1 indicating nothing received in the specified time
+// Return 0 if data received successfully.
+int XbeeRecieve(RXD *recieved, uint32_t delay);
 
 // XbeeSetUp initializes NODE struct with
 // xbee addresses, index and status

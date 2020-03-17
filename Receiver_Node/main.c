@@ -2,8 +2,8 @@
 
 uint8_t pressedBtn;
 static state cur_state = WAIT_CO_1;
-static state next_state;
-message MSG;
+state next_state;
+//message MSG;
 
 int main() {  
   
@@ -15,6 +15,7 @@ int main() {
   usartInit();
     
   char dispBuf[5];
+  int rc;
   
   // Comms setup
   uint8_t coAddr[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -24,8 +25,8 @@ int main() {
   
   ToLCD(LCD_LN2, 0);
   ToLCD(LCD_LN1, 0);
-  stringToLCD("Welcome!");
-  delay(4000000); // ~2.5 sec (not)
+  stringToLCD("Welcome to GIMS!");
+  delay(18000000); // ~18e6 = 3 sec
   ToLCD(LCD_CLR, 0);
   ToLCD(LCD_LN1, 0);
   
@@ -34,6 +35,10 @@ int main() {
     switch(cur_state)
     {
       case WAIT_CO_1:
+        /* Come here on startup. Wait indefinitely until we receive signal
+        from Main Node (AKA Coordinator/CO). If '1' received, we proceed to
+        next state. If anything else received, we go into error state */
+      
         next_state = WAIT_CO_1;
       
         while(next_state == WAIT_CO_1)
@@ -41,12 +46,11 @@ int main() {
           ToLCD(LCD_CLR, 0);
           stringToLCD("Waiting for CO");          
           // will have to wait indefinitely here until receive signal from CO
-          XbeeRecieve(&Received);
+          XbeeRecieve(&Received, 0);
           
-          
-          // To test message receiving and sending
-          
-          /*ToLCD(LCD_CLR, 0);
+          #ifdef DEBUG
+          // To test message receiving and sending          
+          ToLCD(LCD_CLR, 0);
           stringToLCD("Buf size: ");
           sprintf(dispBuf, "%d", Received.length);
           stringToLCD(dispBuf);
@@ -58,44 +62,151 @@ int main() {
             ToLCD(Received.data[i], 1);
             xbeeSend(coAddr, sizeof(Received.data[i]), &Received.data[i]); 
             delay(12000000);
-          } */                          
+          }                        
+          #endif
           
-          
-          if(Received.length != 1 || Received.data[0] != SYNCH)
+          if(Received.length != 1 || (char)Received.data[0] != SYNCH)
           {
             next_state = ERROR_STATE;
+            
+            #ifdef DEBUG
             ToLCD(LCD_CLR, 0);
             stringToLCD("ERROR STATE");
-            delay(9999999);
-            break;
+            delay(4000000);
+            #endif
           }
           
-          if(Received.data[0] == SYNCH)
+          if((char)Received.data[0] == SYNCH)
           {
+            #ifdef DEBUG            
             ToLCD(LCD_CLR, 0);
             stringToLCD("RCVD from CO: ");  
             ToLCD(SYNCH, 1);
             delay(4000000);
-            xbeeSend(coAddr, sizeof(SYNCH), (char *)SYNCH); 
-            ToLCD(LCD_CLR, 0);
-            stringToLCD("SENT 1 to CO");  
-            delay(4000000);
+            #endif
+            
+            next_state = SEND_RESPONSE_2;
           }                 
         }
         break;
         
       case SEND_RESPONSE_2:
+      // Send back to CO our SYNCH signal ('1')
+        xbeeSend(coAddr, sizeof(SYNCH), SYNCH); 
         
-      if(detect_btn_press() != pressedBtn)
-      {
-        pressedBtn = detect_btn_press();
+        #ifdef DEBUG
+        ToLCD(LCD_CLR, 0);
+        stringToLCD("SENT 1 to CO");  
+        delay(4000000);
+        #endif
       
-        if(pressedBtn == 8) // Green PB was pressed
+        next_state = WAIT_CO_3;
+        break;
+      
+      case WAIT_CO_3:
+        // Wait on CO to signal us to sleep
+        cur_state = WAIT_CO_3;
+        
+        #ifdef DEBUG
+        ToLCD(LCD_CLR, 0);
+        stringToLCD("Waitin on CO sig");
+        delay(4000000);
+        #endif
+      
+        while(cur_state == WAIT_CO_3)
         {
-          calcSignal();
+          // wait indefinitely here
+          XbeeRecieve(&Received, 0);
+          
+          if(Received.length != 1 || (char)Received.data[0] != SLEEP)
+          {
+            next_state = ERROR_STATE;
+            
+            #ifdef DEBUG
+            ToLCD(LCD_CLR, 0);
+            stringToLCD("ERROR STATE");
+            delay(4000000);
+            #endif
+          }
+          
+          if((char)Received.data[0] == SLEEP)
+          {
+            #ifdef DEBUG            
+            ToLCD(LCD_CLR, 0);
+            stringToLCD("RCVD from CO: ");  
+            ToLCD(SLEEP, 1);
+            delay(4000000);
+            #endif
+            
+            next_state = SLEEP_4;
+          }
+        }        
+        break;
+        
+      case SLEEP_4:
+        // send back SLEEP signal, and go to sleep for 5 min
+        xbeeSend(coAddr, sizeof(SLEEP), SLEEP); 
+        
+        #ifdef DEBUG
+        ToLCD(LCD_CLR, 0);
+        stringToLCD("Sleep for 5 min");        
+        delay(6000000);
+        #endif
+      
+        sleep(300); // 5 minutes
+        
+        #ifdef DEBUG
+        ToLCD(LCD_CLR, 0);
+        stringToLCD("Awake");        
+        delay(12000000);
+        #endif
+      
+        next_state = PROCESS_SIG_5;
+        break;
+        
+      
+      case PROCESS_SIG_5:
+        
+        rc = 1;
+        double amp, freq;
+      
+        // send RESP state
+        xbeeSend(coAddr, sizeof(RESP), RESP); 
+        // receive RESP ack within 1 sec
+        rc = XbeeRecieve(&Received, 6000000);
+        
+        if (rc == -1)
+        {
+          // did not receive response in time. Goto error state
+          next_state = ERROR_STATE;
+        } else if (rc == 0)
+        {
+          if(Received.length != 1 || (char)Received.data[0] != RESP)
+          {
+            next_state = ERROR_STATE;
+          } else if ((char)Received.data[0] == RESP)
+          {
+            getSignal(&amp, &freq);
+            
+            xbeeSend(coAddr, sizeof(amp), (char)amp); 
+            xbeeSend(coAddr, sizeof(freq), (char)freq); 
+            
+            next_state = WAIT_CO_3;
+          }
         }
-      }
+        
+        break;
+//      if(detect_btn_press() != pressedBtn)
+//      {
+//        pressedBtn = detect_btn_press();
+//      
+//        if(pressedBtn == 8) // Green PB was pressed
+//        {
+//          calcSignal();
+//        }
+//      }
     }
+    cur_state = next_state;
   }
   
 }
@@ -114,14 +225,35 @@ uint8_t detect_btn_press(void) {
   trunc = sw_val;
   return trunc;
 }
+
+void getSignal(double *amp, double *freq)
+{
+  double amp_arr[3], freq_arr[3];
+  int median_amp, median_freq;
+  
+  for (int i = 0; i < 3; i++) 
+  {
+    calcSignal(&amp_arr[i], &freq_arr[i]);
+  }
+  
+  median_amp = getMedian(amp_arr);
+  median_freq = getMedian(freq_arr);
+  
+  *amp = amp_arr[median_amp];
+  *freq = freq_arr[median_freq];
+}
  
-void calcSignal(void) {
-  char vBuf[8],          // char buffer to hold voltage value to print on LCD
+void calcSignal(double *amplitude, double *frequency) {
+  
+  #ifdef DEBUG
+  char vBuf[8],         // char buffer to hold voltage value to print on LCD
        freqBuf[8];      // char buffer to hold frequency value to print on LCD
   
-  unsigned long i,      // iterator var
-                peakCtr,// peak crossing counter
-                cycCtr; // cycle counter - to measure period of wave
+  // double dacAmplitude;  // amplitude to send to DAC - percentage of 3.1V
+  #endif
+  
+  unsigned long peakCtr, // peak crossing counter
+                cycCtr;  // cycle counter - to measure period of wave
                 
   
   unsigned read;         // raw ADC value as read in
@@ -129,17 +261,14 @@ void calcSignal(void) {
   double min,           // minimum ADC reading
          max,           // maximum ADC reading
          vCutoffRise,   // 0.7 x max ADC reading
-         vCutoffFall,   // 0.5 x max ADC reading
-         deltaV,         // stores max-min voltage
-         frequency,     // calculated frequency
-         dacAmplitude;  // amplitude to send to DAC - percentage of 3.1V
-  
+         vCutoffFall;   // 0.5 x max ADC reading      
+    
   min = 2000;
   max = 0;
   peakCtr = 0;
   cycCtr = 0;
   
-  for (i = 0; i < 200000; i++)
+  for (int i = 0; i < 200000; i++)
   {
     read = readADC(); // this can take around 28 ticks
 
@@ -149,39 +278,58 @@ void calcSignal(void) {
     if (read < min)
       min = read;
   }
-  vCutoffRise = 0.7 * max;
+  vCutoffRise = 0.7 * max; // peak detection for frequency
   vCutoffFall = 0.5 * max;
   
-  min = 3.3*(((double)min)/4095.0);
+  min = 3.3*(((double)min)/4095.0); // convert to voltage level
   max = 3.3*(((double)max)/4095.0);
-  deltaV = max - min;
+  *amplitude = max - min;
   
+  #ifdef DEBUG
   ToLCD(LCD_CLR, 0);
   ToLCD(LCD_LN1, 0);
   stringToLCD("delta V = ");  
-  sprintf(vBuf, "%.2f", deltaV);
+  sprintf(vBuf, "%.2f", *amplitude);
   stringToLCD(vBuf);
   ToLCD('V', 1);
       
-  #ifdef DEBUG
   GPIOB->BSRR = 0x400; // set PB10 high. Done to measure run time of loop below
   #endif
   
-  for (i = 0; i < SAMPLED_CYCLES; i++)
+  alarm = 0;
+  Configure_RTC(3);
+  
+  while(!alarm)
   {
-    do { 
-      read = readADC(); 
-      cycCtr++;
-    } while (read < vCutoffRise);
-    
-    if (read > vCutoffRise)
-      peakCtr++;
-    
-    do {
-      read = readADC();
-      cycCtr++;
-    } while (read > vCutoffFall);    
+    for (int i = 0; i < SAMPLED_CYCLES; i++)
+    {
+      do { 
+        read = readADC(); 
+        cycCtr++;
+        
+        if(alarm)
+          break;
+        
+      } while (read < vCutoffRise);
+      
+      if (read > vCutoffRise)
+        peakCtr++;
+      
+      do {
+        read = readADC();
+        cycCtr++;
+        
+        if(alarm)
+          break;
+        
+      } while (read > vCutoffFall);    
+    }
   }
+  
+  Disable_RTC();
+  
+  if(alarm)
+    frequency = 0;
   
   #ifdef DEBUG
   GPIOB->BSRR = 0x4000000; // set PB10 low. 
@@ -195,19 +343,60 @@ void calcSignal(void) {
     // May need to log and report this error.
   }
   
-  frequency = (double)peakCtr * ( 205194.0 / (double)cycCtr ); // num = 189995
+  *frequency = (double)peakCtr * ( 205194.0 / (double)cycCtr ); // num = 189995
   
-  if (frequency > 5000 || frequency < 10) // hard limits on frequency
-    frequency = 0; // can also do error reporting later
-    
+  if (*frequency > 5000 || *frequency < 10) // hard limits on frequency
+    *frequency = 0; // can also do error reporting later
+  
+  #ifdef DEBUG
   ToLCD(LCD_LN2, 0);
   stringToLCD("Freq = ");  
-  sprintf(freqBuf, "%.2f", frequency);
+  sprintf(freqBuf, "%.2f", *frequency);
   stringToLCD(freqBuf);
   stringToLCD(" Hz");
+  delay(18000000); // 3 sec
+  #endif
   
-  dacAmplitude = ( (int)((deltaV * 10) / 10) / 2.6 );  // divide by 3.1 earlier
+  /*dacAmplitude = ( (int)((amplitude * 10) / 10) / 2.6 );  // divide by 3.1 earlier
   dacInit(dacAmplitude, (uint16_t)frequency);
-  
-  pressedBtn = 0;
+  pressedBtn = 0;*/
+}
+
+int getMedian(double AL3[]) 
+{  
+  if (AL3[0] > AL3[1])  
+    { 
+        if (AL3[1] > AL3[2]) 
+            return 1; 
+        else if (AL3[0] > AL3[2]) 
+            return 2; 
+        else
+            return 0; 
+    } 
+    else 
+    { 
+        if (AL3[0] > AL3[2]) 
+            return 0; 
+        else if (AL3[1] > AL3[2]) 
+            return 2; 
+        else
+            return 1; 
+    } 
+}
+
+void RTCAlarm_IRQHandler(void)
+{
+    if((EXTI->PR & EXTI_PR_PR17) == EXTI_PR_PR17)
+    {
+        EXTI->PR |= EXTI_PR_PR17;
+        if ((RTC->CRL & RTC_CRL_ALRF)==RTC_CRL_ALRF)
+        {
+            RTC->CRL &= ~RTC_CRL_ALRF;
+            alarm = 1;
+        }
+    }
+    else
+    {
+        NVIC_DisableIRQ(RTCAlarm_IRQn);// Disable
+    }
 }
