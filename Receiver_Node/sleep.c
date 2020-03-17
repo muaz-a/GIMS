@@ -138,6 +138,7 @@ void Configure_RTC(uint32_t seconds)
 
 void Disable_RTC(void) {
     NVIC->ICER[1] |= NVIC_ICER_CLRENA_9;
+		NVIC->ISER[1] |= NVIC_ISER_SETENA_7;			// reenable UART Interrupt
     EXTI->PR &= ~EXTI_PR_PR17;
     EXTI->IMR &= ~EXTI_IMR_MR17;
     RTC->CRL &=~ RTC_CRL_ALRF;
