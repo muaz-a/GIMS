@@ -86,7 +86,9 @@ uint8_t indexED(NODE *Device)
     commandToLCD(LCD_CLR);
         alarm = 0;
         Configure_RTC(8);
-        stringToLCD("Waiting For Responses");
+    stringToLCD("Waiting for");
+		commandToLCD(LCD_LN2);
+		stringToLCD("request");
         while (!alarm) {
             XbeeReceive(&Received);
             if(Received.data[0] == SYNCH)
@@ -121,13 +123,18 @@ void stagger(uint8_t num, NODE * Devices)
 				alarm=0;
         Configure_RTC(RXDTIM);
 				XbeeReceive(&Received);						// check for response
+				
 				Disable_RTC();
 				if (alarm || Received.data[0]!=SLEEP)			// Checking if timeout or received wrong data
         {
             alarm=0;
             Devices[j].status=TIMEOUT;
 						xbeeSend(Devices[j].address,1,"4");			// send error to ED
+						stringToLCD("Timed Out");
         }
+				commandToLCD(LCD_LN2);
+				stringToLCD("2 Received");
+				delay(6000000);
 				
 				if ((j+1)<num)						// delay between ED for all but last device
 				{
@@ -139,52 +146,76 @@ void stagger(uint8_t num, NODE * Devices)
 				}
 				
     }
+		delay(1200000);
 }
 
 void listen(uint8_t num, NODE * Devices)
 {
     RXD Received;
+		bool Order = true;
     alarm = 0;
     commandToLCD(LCD_CLR);
-		Configure_RTC(302-(STAGGER*(num-1)));		// ~5 minutes
+		//Configure_RTC(15-(STAGGER*(num-1)));		// ~5 minutes
+		Configure_RTC(20);		// ~5 minutes
     stringToLCD("Waiting for");
 		commandToLCD(LCD_LN2);
-		stringToLCD("request");
+		stringToLCD("3");
+		delay(6000000);
     for(int j = 0; j < num; j++)
     {
         XbeeReceive(&Received);							// wait for ED to send Resp ("3")
 				if(Received.data[0] == RESP)				// make sure "3" was recieved
 				{
+					commandToLCD(LCD_CLR);
+					stringToLCD("3 Recieved");
 					xbeeSend(Received.address,1,"3");
+					delay(120000);
 				}
-        commandToLCD(LCD_CLR);
+//commandToLCD(LCD_CLR);
         if (alarm)							// check if alarm has gone
         {
             Disable_RTC();
             alarm=0;
             Devices[j].status=TIMEOUT;				// if timed out set device status
+						stringToLCD("Timed Out");
+						delay(1200000);
         }
         else
         {
             Disable_RTC();
-            while(Devices[j].address != Received.address)		// find what device recieved from
-            {
-               Devices[j].status=TIMEOUT;										// if not in order loop until ED is found and mark others as timed out
-                j++;
-            }
-            Devices[j].status=RDY;													
-            commandToLCD(LCD_CLR);
-            stringToLCD("Send: ");
-            dataToLCD((j+1)+0x30);
-						sine(1);																			// send sine signal
-            Configure_RTC(SINTIM);						
-            XbeeReceive(&Received);												// wait for response
-            Devices[j].freq = Received.data[1];						// gather freq and amplitude data
-            Devices[j].ampl = (Received.data[2]<<8)|Received.data[3];
-            while(!alarm);																// loop if timer hasn't finished
-            Disable_RTC();
-            alarm=0;
-            sineOff();
+						for(int i=0; i < ADDRESS_LENGTH; i++)
+						{
+							while(Devices[j].address[i] != Received.address[i])		// find what device recieved from
+							{
+								Devices[j].status=TIMEOUT;										// if not in order set as timed out
+								stringToLCD("Timed Out");
+								Order = false;																// set Order flag to false
+							}
+						}
+						if(Order)					// check if Recieved in the right order
+						{
+							Devices[j].status=RDY;													
+	//            commandToLCD(LCD_CLR);
+	//            stringToLCD("Send: ");
+	//            dataToLCD((j+1)+0x30);
+							sine(1);																			// send sine signal
+							Configure_RTC(SINTIM);						
+							XbeeReceive(&Received);							// wait for response
+							for(int i=0; i <Received.length;i++)
+							{
+								Devices[j].ampl[i] = Received.data[i];						// gather freq and amplitude data
+							}																										// 06 00 20 DD 01 00 08 E5
+							XbeeReceive(&Received);							// wait for response
+							for(int i=0; i <Received.length;i++)
+							{
+								Devices[j].freq[i] = Received.data[i];
+							}																										// B0 06 00 20 DD 01 00 08
+							while(!alarm);																// loop if timer hasn't finished
+							Disable_RTC();
+							alarm=0;
+							sineOff();
+						}
+						Order = true;
         }
         if ((j+1)<num)
         {
@@ -197,6 +228,7 @@ void listen(uint8_t num, NODE * Devices)
 void analyze(uint8_t num, NODE * Devices)
 {
 	int NoResp = 0;
+	double amp, freq;
 	
 		commandToLCD(LCD_CLR);
 		stringToLCD("Analyze Data");
@@ -214,6 +246,24 @@ void analyze(uint8_t num, NODE * Devices)
 					dataToLCD(j+1+0x30);
 					stringToLCD(", ");
 				}
+			for(int i=0; i <LENGTH;i++)
+        {
+					amp = amp + (Devices[j].ampl[i] << 8*(8-(i+1)));
+					dataToLCD(Devices[j].ampl[i]);
+				}
+				amp = atof((char*)Devices[j].ampl);
+			commandToLCD(LCD_LN2);
+			for(int i=0; i <LENGTH;i++)
+        {	
+					
+					freq = freq + (Devices[j].freq[i] << 8*(8-(i+1)));
+					
+					dataToLCD((double)Devices[j].freq[i]);
+					
+				}
+				freq = atof((char*)Devices[j].freq);
+
+				delay(12000000);
     }
 		
 		

@@ -22,6 +22,7 @@ Includes all functions related to Xbee's, and UART
 #define PACKET_LENGTH 30
 #define FRAME_ADDRESS 3
 #define DATA_ADDRESS 15
+#define LENGTH 8
 
 // Status used to determine what receiver is doing
 typedef enum {
@@ -36,8 +37,8 @@ typedef struct{
 	uint8_t address[ADDRESS_LENGTH];
 	int index;
 	Status status;
-    uint8_t freq;
-    uint16_t ampl;
+    uint8_t freq[LENGTH];
+    uint8_t ampl[LENGTH];
 } NODE;
 // Struct RXD used to hold Received data
 typedef struct{

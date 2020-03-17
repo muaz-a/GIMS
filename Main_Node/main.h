@@ -3,8 +3,8 @@
 
 #define DEBUG
 #define STAGGER 10
-#define RXDTIM 1
-#define SINTIM 5
+#define RXDTIM 3
+#define SINTIM 30
 
 
 #define SYNCH '1'

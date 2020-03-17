@@ -3,52 +3,49 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.26.2.0
+IDE-Version: µVision V5.25.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Brett Aulie, University of Regina Student, LIC=----
+License Information: Faculty of Engineering, University of Regina, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.26.2.0
-Toolchain Path:  K:\KeilUvis\ARM\ARMCC\Bin
+Toolchain:       MDK-Lite  Version: 5.25.2.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
 Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
 Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.26.2.0
-Dialog DLL:      DCM.DLL V1.17.2.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
-Dialog DLL:      TCM.DLL V1.36.1.0
+CPU DLL:         SARMCM3.DLL V5.25.2.0
+Dialog DLL:      DCM.DLL V1.17.1.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Dialog DLL:      TCM.DLL V1.35.1.0
  
 <h2>Project:</h2>
 E:\GIMS\GIMS\Main_Node\main_node.uvprojx
-Project File Date:  03/15/2020
+Project File Date:  03/17/2020
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'K:\KeilUvis\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
+assembling startup_stm32f10x_md_vl.s...
+compiling init_lib.c...
+compiling sleep_lib.c...
 compiling LCD.c...
 LCD.c(113): warning:  #223-D: function "strlen" declared implicitly
   	uint16_t messageLength = strlen(message);
 LCD.c: 1 warning, 0 errors
-compiling init_lib.c...
 compiling main.c...
 main.c(15): warning:  #177-D: variable "ED1"  was declared but never referenced
       uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
 main.c(16): warning:  #177-D: variable "ED2"  was declared but never referenced
       uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
 main.c: 2 warnings, 0 errors
-compiling sleep_lib.c...
-compiling xbee.c...
-xbee.c(125): warning:  #177-D: variable "rxdsize"  was declared but never referenced
-  		int rxdsize= 0;
-xbee.c: 1 warning, 0 errors
-assembling startup_stm32f10x_md_vl.s...
 compiling sin.c...
+compiling xbee.c...
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=7284 RO-data=320 RW-data=32 ZI-data=1808  
-".\Objects\main_node.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=14020 RO-data=784 RW-data=32 ZI-data=1808  
+".\Objects\main_node.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -67,19 +64,19 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
   .\RTE\Device\STM32F100RB
   .\RTE\_Target_1
-  K:\KeilUvis\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include
-  K:\KeilUvis\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
       Source file:   Device\Source\system_stm32f10x.c
-      Include file:  RTE_Driver\Config\RTE_Device.h
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-Build Time Elapsed:  00:00:07
+      Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
+      Include file:  RTE_Driver\Config\RTE_Device.h
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
