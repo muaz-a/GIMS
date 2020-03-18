@@ -12,8 +12,8 @@ int main(void)
     uint8_t num = 0;
     NODE *Devices;
     uint8_t BROADCAST[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF};
-    uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-    uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
+//    uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
+//    uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
     
 
     static state cur_state = POWER_UP_1;
@@ -214,6 +214,11 @@ void listen(uint8_t num, NODE * Devices)
 							{
 								Devices[j].freq[i] = Received.data[i];
 							}																										// B0 06 00 20 DD 01 00 08
+							XbeeReceive(&Received);							// wait for response
+							for(int i=0; i <Received.length;i++)
+							{
+								Devices[j].TiltSW = Received.data[i];
+							}							
 							//while(!alarm);																// loop if timer hasn't finished
 							Disable_RTC();
 							alarm=0;
@@ -235,7 +240,8 @@ void listen(uint8_t num, NODE * Devices)
 void analyze(uint8_t num, NODE * Devices)
 {
 	int NoResp = 0;
-	double Amp, Freq, test;
+	double Amp, Freq;
+	static int Tilt[10];
 	
 		commandToLCD(LCD_CLR);
 		stringToLCD("Analyze Data");
@@ -253,23 +259,40 @@ void analyze(uint8_t num, NODE * Devices)
 					dataToLCD(j+1+0x30);
 					stringToLCD(", ");
 				}
-			for(int i=0; i <LENGTH;i++)
-        {
-					dataToLCD(Devices[j].ampl[i]);
-				}
+				else
+					{
+						for(int i=0; i <LENGTH;i++)
+							{
+								if(Devices[j].ampl[i] > 0x2C)
+								dataToLCD(Devices[j].ampl[i]);
+							}
 
-			commandToLCD(LCD_LN2);
-			for(int i=0; i <LENGTH;i++)
-        {					
-					dataToLCD(Devices[j].freq[i]);
-					
-				}
-//				Freq = atof((char*)Devices[j].freq);
-//				Amp = atof((char*)Devices[j].ampl);
-//				Devices[j].Dampl = Amp;
-//				
-//				Devices[j].Dfreq = Freq;
-				delay(12000000);
+						commandToLCD(LCD_LN2);
+						for(int i=0; i <LENGTH;i++)
+							{					
+								if(Devices[j].freq[i] > 0x2C)
+								dataToLCD(Devices[j].freq[i]);
+							}
+							
+							Devices[j].Dfreq = 0;
+							Devices[j].Dampl = 0;
+							Freq = atof(Devices[j].freq);
+							Amp = atof(Devices[j].ampl);
+							Devices[j].Dampl = Amp;
+							Devices[j].Dfreq = Freq;
+							if(Devices[j].TiltSW == '1')
+							{
+								Tilt[j] = 1;
+								commandToLCD(LCD_CLR);
+								stringToLCD("Tilt Switch Trig");
+								commandToLCD(LCD_LN2);
+								stringToLCD("Device ");
+								dataToLCD((j+1)+0x30);
+							}
+							else
+								Tilt[j] = 0;
+							delay(6000000);
+					}
     }
 		
 		

@@ -37,10 +37,11 @@ typedef struct{
 	uint8_t address[ADDRESS_LENGTH];
 	int index;
 	Status status;
-    uint8_t freq[LENGTH];
-    uint8_t ampl[LENGTH];
+    char freq[LENGTH];
+    char ampl[LENGTH];
 		double Dfreq;
 		double Dampl;
+		uint8_t TiltSW;
 } NODE;
 // Struct RXD used to hold Received data
 typedef struct{
