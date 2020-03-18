@@ -68,7 +68,7 @@ int main(void)
                 break;
              case ANALYZE_6:
                 analyze(num, Devices);					// analyze the data recieved from ED's
-                next_state = STAGGER_RESP_4;
+                next_state = LISTEN_5;
                 break;
         }
         cur_state = next_state;
@@ -130,7 +130,7 @@ void stagger(uint8_t num, NODE * Devices)
             alarm=0;
             Devices[j].status=TIMEOUT;
 						xbeeSend(Devices[j].address,1,"4");			// send error to ED
-						stringToLCD("Timed Out");
+						stringToLCD("Times Out");
         }
 				commandToLCD(LCD_LN2);
 				stringToLCD("2 Received");
@@ -177,7 +177,9 @@ void listen(uint8_t num, NODE * Devices)
             Disable_RTC();
             alarm=0;
             Devices[j].status=TIMEOUT;				// if timed out set device status
-						stringToLCD("Timed Out");
+						commandToLCD(LCD_CLR);
+						dataToLCD(j);
+						stringToLCD(" Timed Out");
 						delay(1200000);
         }
         else
@@ -188,7 +190,9 @@ void listen(uint8_t num, NODE * Devices)
 							while(Devices[j].address[i] != Received.address[i])		// find what device recieved from
 							{
 								Devices[j].status=TIMEOUT;										// if not in order set as timed out
-								stringToLCD("Timed Out");
+								commandToLCD(LCD_CLR);
+								dataToLCD(j);
+								stringToLCD(" Timed Outs");
 								Order = false;																// set Order flag to false
 							}
 						}
@@ -210,7 +214,7 @@ void listen(uint8_t num, NODE * Devices)
 							{
 								Devices[j].freq[i] = Received.data[i];
 							}																										// B0 06 00 20 DD 01 00 08
-							while(!alarm);																// loop if timer hasn't finished
+							//while(!alarm);																// loop if timer hasn't finished
 							Disable_RTC();
 							alarm=0;
 							sineOff();
@@ -221,6 +225,9 @@ void listen(uint8_t num, NODE * Devices)
         {
             alarm=0;
             Configure_RTC(STAGGER);
+						commandToLCD(LCD_CLR);
+						stringToLCD("Wait For Next");
+						delay(1200000);
         }
     }
 }
@@ -228,7 +235,7 @@ void listen(uint8_t num, NODE * Devices)
 void analyze(uint8_t num, NODE * Devices)
 {
 	int NoResp = 0;
-	double amp, freq;
+	double Amp, Freq, test;
 	
 		commandToLCD(LCD_CLR);
 		stringToLCD("Analyze Data");
@@ -248,21 +255,20 @@ void analyze(uint8_t num, NODE * Devices)
 				}
 			for(int i=0; i <LENGTH;i++)
         {
-					amp = amp + (Devices[j].ampl[i] << 8*(8-(i+1)));
 					dataToLCD(Devices[j].ampl[i]);
 				}
-				amp = atof((char*)Devices[j].ampl);
+
 			commandToLCD(LCD_LN2);
 			for(int i=0; i <LENGTH;i++)
-        {	
-					
-					freq = freq + (Devices[j].freq[i] << 8*(8-(i+1)));
-					
-					dataToLCD((double)Devices[j].freq[i]);
+        {					
+					dataToLCD(Devices[j].freq[i]);
 					
 				}
-				freq = atof((char*)Devices[j].freq);
-
+//				Freq = atof((char*)Devices[j].freq);
+//				Amp = atof((char*)Devices[j].ampl);
+//				Devices[j].Dampl = Amp;
+//				
+//				Devices[j].Dfreq = Freq;
 				delay(12000000);
     }
 		

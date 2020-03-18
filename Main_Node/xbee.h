@@ -39,6 +39,8 @@ typedef struct{
 	Status status;
     uint8_t freq[LENGTH];
     uint8_t ampl[LENGTH];
+		double Dfreq;
+		double Dampl;
 } NODE;
 // Struct RXD used to hold Received data
 typedef struct{
