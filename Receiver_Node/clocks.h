@@ -1,8 +1,6 @@
 #ifndef CLOCKS_H
 #define CLOCKS_H
 
-#define DEBUG
-
 #include "stm32f10x.h"
 
 // Initialize the Cortex M3 clock using the RCC registers

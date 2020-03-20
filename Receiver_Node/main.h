@@ -2,7 +2,7 @@
 #define MAIN_H
 
 #define DEBUG
-#define SAMPLED_CYCLES 30
+#define SAMPLED_CYCLES 20
 
 #define SYNCH '1'
 #define SLEEP '2'
@@ -26,8 +26,8 @@ typedef enum
 {
   WAIT_CO_1, // synch at start up - receive a '1' from CO
   SEND_RESPONSE_2, // send back '1' to CO
-  WAIT_CO_3, // wait to receive a '2' from CO
-  SLEEP_4, // send back '2' go to sleep
+  WAIT_CO_3, // wait to receive a '2' from CO, and send back '2'
+  SLEEP_4, // go to sleep
   PROCESS_SIG_5, // wake up, tx and rx '3', process signal and tx  
   ERROR_STATE // end up here if there is any error
 } state;
@@ -36,7 +36,7 @@ uint8_t detect_btn_press(void);
 
 /* Wrapper function that calls calcSignal thrice to retrive 
    median sampled value */
-void getSignal(double *amp, double *freq);
+void getSignal(char amp[], char freq[]);
 
 /* Calculates amplitude and signal of signal being read from ADC */
 void calcSignal(double *amplitude, double *frequency);

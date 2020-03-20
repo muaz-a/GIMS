@@ -45,7 +45,8 @@ uint16_t recieve_usart(void)
   if((USART3->SR & USART_SR_RXNE) == USART_SR_RXNE)
   {
     return USART3->DR;
-  }   
+  } else
+    return 0; // should never return 0
 }
  
  void USART3_IRQHandler(void){
@@ -119,11 +120,11 @@ uint16_t recieve_usart(void)
  
 int XbeeRecieve(RXD *recieved, uint32_t delay)
 {
-	recieved->length = 0;
+  recieved->length = 0;
   uint8_t frametype;
-  uint8_t rxdRF[RXD_LENGTH];
+  //uint8_t rxdRF[RXD_LENGTH];
   int rxdsize= 0;
-  bool device1, device2;
+  // bool device1, device2;
   frametype = buffer[FRAME_ADDRESS];
   uint8_t usebuffer[PACKET_LENGTH];
   uint8_t usebsize = PACKET_LENGTH;
@@ -138,7 +139,7 @@ int XbeeRecieve(RXD *recieved, uint32_t delay)
     for(int i = 0; i < delay; i++)
     {
       if(bfull)
-				break;
+        break;
     }
     if (!bfull)
       return -1; // error - didn't receive in alotted ticks
@@ -156,31 +157,31 @@ int XbeeRecieve(RXD *recieved, uint32_t delay)
 
   frametype = usebuffer[FRAME_ADDRESS];
 
-  for(int i=0; i < ADDRESS_LENGTH;i++)// check sending address starting on byte 5 (index 4)
-  {      
-    if(usebuffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
-      {    
-        device1 = true;    // used for printing to LCD
-        recieved->device = 1;
-      } else 
-      {
-        device1 = false;  // used for printing to LCD
-      }
-    if (usebuffer[i+4] == ED2[i])// check for End Device 2 match, set flag if matches
-      {    
-        device2 = true;    // used for printing to LCD
-        recieved->device = 2;
-      } else
-      { 
-        device2 = false;    // used for printing to LCD
-      }
-  }
+//  for(int i=0; i < ADDRESS_LENGTH; i++)// check sending address starting on byte 5 (index 4)
+//  {      
+//    if(usebuffer[i+4]==ED1[i])// check for End Device 1 match, set flag if matches
+//      {    
+//        device1 = true;    // used for printing to LCD
+//        recieved->device = 1;
+//      } else 
+//      {
+//        device1 = false;  // used for printing to LCD
+//      }
+//    if (usebuffer[i+4] == ED2[i])// check for End Device 2 match, set flag if matches
+//      {    
+//        device2 = true;    // used for printing to LCD
+//        recieved->device = 2;
+//      } else
+//      { 
+//        device2 = false;    // used for printing to LCD
+//      }
+//  }
    
   if(frametype == 0x90) // Packet type = 'Receive Packet'
     {
       for(int j=DATA_ADDRESS; j < usebsize; j++)
       {
-        rxdRF[j-DATA_ADDRESS] = usebuffer[j];    // used for printing to LCD
+        // rxdRF[j-DATA_ADDRESS] = usebuffer[j];    // used for printing to LCD
         recieved->data[j-DATA_ADDRESS] = usebuffer[j];
         recieved->length++;
         rxdsize++;          // used for printing to LCD
@@ -213,20 +214,18 @@ int XbeeRecieve(RXD *recieved, uint32_t delay)
    return 0;
  }
  
- void XbeeSetUp(NODE Devices[])
- {
-   for(int i =0; i < 2; i++)
-   {
-     for(int j = 0; j < 8; j++)
-     {
-       if(i==0)
-       {
-          Devices[i].address[j] = ED1[j];      // copy address over
-       }
-       else Devices[i].address[j] = ED2[j];      // copy address over
-     }
-     Devices[i].status = RDY;        // set to ready
-     Devices[i].index = i+1;        // set to address
-   }    
- }
- 
+void XbeeSetUp(NODE Devices[])
+{
+  for(int i =0; i < 2; i++)
+  {
+    for(int j = 0; j < 8; j++)
+    {
+      if(i==0)      
+        Devices[i].address[j] = ED1[j];      // copy address over
+      else 
+        Devices[i].address[j] = ED2[j];      // copy address over
+    }
+    Devices[i].status = RDY;        // set to ready
+    Devices[i].index = i+1;        // set to address
+  }    
+}

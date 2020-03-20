@@ -39,7 +39,6 @@ typedef struct{
 
 // Struct RXD used to hold Recieved data
 typedef struct{
-  int device;
   char data[20];
   int length;
 } RXD;
