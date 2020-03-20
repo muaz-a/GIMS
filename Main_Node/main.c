@@ -12,8 +12,8 @@ int main(void)
     uint8_t num = 0;
     NODE *Devices;
     uint8_t BROADCAST[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF};
-    uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
-    uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
+//    uint8_t ED1[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x06, 0x93};		// Address of End Device 1
+//    uint8_t ED2[8] = {0x00, 0x13, 0xA2, 0x00, 0x41, 0xB1, 0x15, 0x4B};		// Address of End Device 2
     
 
     static state cur_state = POWER_UP_1;
@@ -32,6 +32,7 @@ int main(void)
                 stringToLCD("Power Up");
                 for(int i=0;i<12000000;i++);
                 next_state = SEND_SYNCH_2;
+								delay(6000000);
                 break;
                 
             case SEND_SYNCH_2:  //
@@ -152,7 +153,8 @@ void stagger(uint8_t num, NODE * Devices)
 void listen(uint8_t num, NODE * Devices)
 {
     RXD Received;
-		bool Order = true;
+		bool Order = true, Same = true, ED = true;
+		int numRXD = 0;
     alarm = 0;
     commandToLCD(LCD_CLR);
 		//Configure_RTC(15-(STAGGER*(num-1)));		// ~5 minutes
@@ -196,24 +198,77 @@ void listen(uint8_t num, NODE * Devices)
 								Order = false;																// set Order flag to false
 							}
 						}
-						if(Order)					// check if Recieved in the right order
+						if(Order)					// check if Recieved ED is in the right order
 						{
 							Devices[j].status=RDY;													
 	//            commandToLCD(LCD_CLR);
 	//            stringToLCD("Send: ");
 	//            dataToLCD((j+1)+0x30);
 							sine(1);																			// send sine signal
-							Configure_RTC(SINTIM);						
-							XbeeReceive(&Received);							// wait for response
-							for(int i=0; i <Received.length;i++)
+							Configure_RTC(SINTIM);		
+							while(numRXD < 3)					// loop three times, once for each data point: Amp, Freq, TiltSW
 							{
-								Devices[j].ampl[i] = Received.data[i];						// gather freq and amplitude data
-							}																										// 06 00 20 DD 01 00 08 E5
-							XbeeReceive(&Received);							// wait for response
-							for(int i=0; i <Received.length;i++)
-							{
-								Devices[j].freq[i] = Received.data[i];
-							}																										// B0 06 00 20 DD 01 00 08
+								XbeeReceive(&Received);							// wait for response
+								for(int p=0; p < ADDRESS_LENGTH; p++)
+								{
+									if(Devices[j].address[p] != Received.address[p])		// make sure recieved data was from the right ED
+									{
+										Same = false;																			// if not set flag
+									}	
+								}
+								if(Same)									// if addresses the same continue to get data
+								{
+									for(int i=0; i <Received.length;i++)
+									{
+										if(numRXD==0)
+										Devices[j].ampl[i] = Received.data[i];						// gather freq and amplitude data
+										else if(numRXD==1)
+										Devices[j].freq[i] = Received.data[i];
+										else
+										Devices[j].TiltSW = Received.data[i];							//  tilt switch data 0-All Good, 1-No Good
+									}																										// 06 00 20 DD 01 00 08 E5
+									numRXD++;
+								}
+								else 					// if addresses not the same, send "4" to ED and mark ED as Timeout
+								{
+									xbeeSend(Received.address,1,"4");			// send for to ED for it to go into Error State
+									for(int i=0; i < num; i++)
+									{
+										ED = true;
+										for(int k=0; k < ADDRESS_LENGTH; k++)
+										{
+											if(Devices[i].address[k] != Received.address[k])		// find what device sent unexpected message
+											{
+												ED = false;
+											}
+											if(!ED)
+											{
+												Devices[i].status = TIMEOUT;							// mark it as timeout
+												break;
+											}
+										}
+										if(ED)
+											break;
+										
+									}
+								}
+								Same = true;
+							}
+//							XbeeReceive(&Received);							// wait for response
+//								for(int i=0; i <Received.length;i++)
+//								{
+//									Devices[j].ampl[i] = Received.data[i];						// gather freq and amplitude data
+//								}																										// 06 00 20 DD 01 00 08 E5
+//							XbeeReceive(&Received);							// wait for response
+//							for(int i=0; i <Received.length;i++)
+//							{
+//								Devices[j].freq[i] = Received.data[i];
+//							}																										// B0 06 00 20 DD 01 00 08
+//							XbeeReceive(&Received);							// wait for response
+//							for(int i=0; i <Received.length;i++)
+//							{
+//								Devices[j].TiltSW = Received.data[i];
+//							}							
 							//while(!alarm);																// loop if timer hasn't finished
 							Disable_RTC();
 							alarm=0;
@@ -235,7 +290,8 @@ void listen(uint8_t num, NODE * Devices)
 void analyze(uint8_t num, NODE * Devices)
 {
 	int NoResp = 0;
-	double Amp, Freq, test;
+	double Amp, Freq;
+	static int Tilt[10];
 	
 		commandToLCD(LCD_CLR);
 		stringToLCD("Analyze Data");
@@ -253,23 +309,40 @@ void analyze(uint8_t num, NODE * Devices)
 					dataToLCD(j+1+0x30);
 					stringToLCD(", ");
 				}
-			for(int i=0; i <LENGTH;i++)
-        {
-					dataToLCD(Devices[j].ampl[i]);
-				}
+				else
+					{
+						for(int i=0; i <LENGTH;i++)
+							{
+								if(Devices[j].ampl[i] > 0x2C)
+								dataToLCD(Devices[j].ampl[i]);
+							}
 
-			commandToLCD(LCD_LN2);
-			for(int i=0; i <LENGTH;i++)
-        {					
-					dataToLCD(Devices[j].freq[i]);
-					
-				}
-//				Freq = atof((char*)Devices[j].freq);
-//				Amp = atof((char*)Devices[j].ampl);
-//				Devices[j].Dampl = Amp;
-//				
-//				Devices[j].Dfreq = Freq;
-				delay(12000000);
+						commandToLCD(LCD_LN2);
+						for(int i=0; i <LENGTH;i++)
+							{					
+								if(Devices[j].freq[i] > 0x2C)
+								dataToLCD(Devices[j].freq[i]);
+							}
+							
+							Devices[j].Dfreq = 0;
+							Devices[j].Dampl = 0;
+							Freq = atof(Devices[j].freq);
+							Amp = atof(Devices[j].ampl);
+							Devices[j].Dampl = Amp;
+							Devices[j].Dfreq = Freq;
+							if(Devices[j].TiltSW == '1')
+							{
+								Tilt[j] = 1;
+								commandToLCD(LCD_CLR);
+								stringToLCD("Tilt Switch Trig");
+								commandToLCD(LCD_LN2);
+								stringToLCD("Device ");
+								dataToLCD((j+1)+0x30);
+							}
+							else
+								Tilt[j] = 0;
+							delay(6000000);
+					}
     }
 		
 		
