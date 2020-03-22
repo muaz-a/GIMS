@@ -9,6 +9,7 @@
 .\objects\sleep.o: C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h
 .\objects\sleep.o: C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
 .\objects\sleep.o: clocks.h
+.\objects\sleep.o: sleep.h
 .\objects\sleep.o: lcd.h
 .\objects\sleep.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\sleep.o: xbee.h

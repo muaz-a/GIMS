@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Mar 19 20:44:07 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Mar 21 18:02:55 2020
 <BR><P>
 <H3>Maximum Stack Usage =        400 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -61,13 +61,13 @@ Function Pointers
  <LI><a href="#[f]">PVD_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[c]">PendSV_Handler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[13]">RCC_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
- <LI><a href="#[33]">RTCAlarm_IRQHandler</a> from main.o(i.RTCAlarm_IRQHandler) referenced from startup_stm32f10x_md_vl.o(RESET)
+ <LI><a href="#[33]">RTCAlarm_IRQHandler</a> from clocks.o(i.RTCAlarm_IRQHandler) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[11]">RTC_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[3b]">Reset_Handler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[2d]">SPI1_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[2e]">SPI2_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[a]">SVC_Handler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
- <LI><a href="#[d]">SysTick_Handler</a> from dac.o(i.SysTick_Handler) referenced from startup_stm32f10x_md_vl.o(RESET)
+ <LI><a href="#[d]">SysTick_Handler</a> from clocks.o(i.SysTick_Handler) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[37]">SystemInit</a> from system_stm32f10x.o(i.SystemInit) referenced from startup_stm32f10x_md_vl.o(.text)
  <LI><a href="#[10]">TAMPER_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
  <LI><a href="#[22]">TIM1_BRK_TIM15_IRQHandler</a> from startup_stm32f10x_md_vl.o(.text) referenced from startup_stm32f10x_md_vl.o(RESET)
@@ -434,12 +434,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
 <LI>Call Chain = __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
+<BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[45]"></a>_printf_int_dec</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, _printf_dec.o(.text))
@@ -627,34 +627,33 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
 </UL>
 
-<P><STRONG><a name="[81]"></a>ADCInit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCInit))
+<P><STRONG><a name="[80]"></a>ADCInit</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCInit))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7b]"></a>Configure_RTC</STRONG> (Thumb, 366 bytes, Stack size 0 bytes, sleep.o(i.Configure_RTC))
+<P><STRONG><a name="[7a]"></a>Configure_RTC</STRONG> (Thumb, 366 bytes, Stack size 0 bytes, sleep.o(i.Configure_RTC))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[1b]"></a>DMA1_Channel3_IRQHandler</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, dac.o(i.DMA1_Channel3_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
-<P><STRONG><a name="[7c]"></a>Disable_RTC</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, sleep.o(i.Disable_RTC))
+<P><STRONG><a name="[7b]"></a>Disable_RTC</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, sleep.o(i.Disable_RTC))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
-<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, main.o(i.EXTI15_10_IRQHandler))
+<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, main.o(i.EXTI15_10_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = EXTI15_10_IRQHandler &rArr; stringToLCD &rArr; strlen
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_DisableIRQ
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
-<P><STRONG><a name="[6e]"></a>LCDInit</STRONG> (Thumb, 144 bytes, Stack size 4 bytes, lcd.o(i.LCDInit))
+<P><STRONG><a name="[6d]"></a>LCDInit</STRONG> (Thumb, 144 bytes, Stack size 4 bytes, lcd.o(i.LCDInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = LCDInit &rArr; ToLCD
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
@@ -663,20 +662,16 @@ Global Symbols
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[33]"></a>RTCAlarm_IRQHandler</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, main.o(i.RTCAlarm_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RTCAlarm_IRQHandler
-</UL>
-<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_DisableIRQ
-</UL>
+<P><STRONG><a name="[33]"></a>RTCAlarm_IRQHandler</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, clocks.o(i.RTCAlarm_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
-<P><STRONG><a name="[d]"></a>SysTick_Handler</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, dac.o(i.SysTick_Handler))
+<P><STRONG><a name="[d]"></a>SysTick_Handler</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, clocks.o(i.SysTick_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
 <P><STRONG><a name="[37]"></a>SystemInit</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo24
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(.text)
 </UL>
@@ -686,19 +681,19 @@ Global Symbols
 <P><STRONG><a name="[6b]"></a>ToLCD</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, lcd.o(i.ToLCD))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ToLCD
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
 <P><STRONG><a name="[31]"></a>USART3_IRQHandler</STRONG> (Thumb, 120 bytes, Stack size 4 bytes, xbee.o(i.USART3_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = USART3_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieve_usart
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieve_usart
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(RESET)
 </UL>
@@ -722,90 +717,91 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__printf
 </UL>
 
-<P><STRONG><a name="[73]"></a>calcSignal</STRONG> (Thumb, 622 bytes, Stack size 104 bytes, main.o(i.calcSignal))
+<P><STRONG><a name="[72]"></a>calcSignal</STRONG> (Thumb, 622 bytes, Stack size 104 bytes, main.o(i.calcSignal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232 + Unknown Stack Size
 <LI>Call Chain = calcSignal &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readADC
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readADC
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_RTC
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Configure_RTC
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_RTC
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Configure_RTC
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
 </UL>
 
-<P><STRONG><a name="[7f]"></a>clockInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, clocks.o(i.clockInit))
+<P><STRONG><a name="[7e]"></a>clockInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, clocks.o(i.clockInit))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[71]"></a>delay</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, lcd.o(i.delay))
+<P><STRONG><a name="[70]"></a>delay</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, lcd.o(i.delay))
 <BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
-<P><STRONG><a name="[7d]"></a>getMedian</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, main.o(i.getMedian))
+<P><STRONG><a name="[7c]"></a>getMedian</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, main.o(i.getMedian))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = getMedian &rArr; __aeabi_cdrcmple
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
 </UL>
 
-<P><STRONG><a name="[7e]"></a>getSignal</STRONG> (Thumb, 98 bytes, Stack size 80 bytes, main.o(i.getSignal))
+<P><STRONG><a name="[7d]"></a>getSignal</STRONG> (Thumb, 98 bytes, Stack size 80 bytes, main.o(i.getSignal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
 <LI>Call Chain = getSignal &rArr; calcSignal &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMedian
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMedian
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4f]"></a>main</STRONG> (Thumb, 790 bytes, Stack size 88 bytes, main.o(i.main))
+<P><STRONG><a name="[4f]"></a>main</STRONG> (Thumb, 794 bytes, Stack size 88 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
 <LI>Call Chain = main &rArr; getSignal &rArr; calcSignal &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysTick_LPF_clkInit
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stringToLCD
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeSetUp
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XbeeRecieve
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSignal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[80]"></a>portInit</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, clocks.o(i.portInit))
+<P><STRONG><a name="[7f]"></a>portInit</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, clocks.o(i.portInit))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[74]"></a>readADC</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, adc.o(i.readADC))
-<BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<P><STRONG><a name="[73]"></a>readADC</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, adc.o(i.readADC))
+<BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
-<P><STRONG><a name="[72]"></a>recieve_usart</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, xbee.o(i.recieve_usart))
+<P><STRONG><a name="[71]"></a>recieve_usart</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, xbee.o(i.recieve_usart))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 </UL>
 
@@ -813,17 +809,18 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbeeSend
 </UL>
 
-<P><STRONG><a name="[87]"></a>sleep</STRONG> (Thumb, 194 bytes, Stack size 16 bytes, sleep.o(i.sleep))
+<P><STRONG><a name="[87]"></a>sleep</STRONG> (Thumb, 198 bytes, Stack size 16 bytes, sleep.o(i.sleep))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = sleep &rArr; LCDInit &rArr; ToLCD
 </UL>
-<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_RTC
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Configure_RTC
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usartInit
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timerInit
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysTick_LPF_clkInit
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;portInit
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clockInit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCDInit
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_RTC
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Configure_RTC
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCInit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -835,16 +832,21 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ToLCD
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
-<P><STRONG><a name="[82]"></a>timerInit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, clocks.o(i.timerInit))
+<P><STRONG><a name="[83]"></a>sysTick_LPF_clkInit</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, clocks.o(i.sysTick_LPF_clkInit))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[83]"></a>usartInit</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.usartInit))
+<P><STRONG><a name="[81]"></a>timerInit</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, clocks.o(i.timerInit))
+<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[82]"></a>usartInit</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, xbee.o(i.usartInit))
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleep
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -877,10 +879,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
-<P><STRONG><a name="[79]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
+<P><STRONG><a name="[78]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[8f]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -888,16 +890,16 @@ Global Symbols
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[75]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
-<BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<P><STRONG><a name="[74]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
+<BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[c5]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[77]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
+<P><STRONG><a name="[76]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[90]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
@@ -909,10 +911,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_drcmple
 </UL>
 
-<P><STRONG><a name="[78]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
+<P><STRONG><a name="[77]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[92]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul), UNUSED)
@@ -934,21 +936,21 @@ Global Symbols
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 </UL>
 
-<P><STRONG><a name="[76]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
+<P><STRONG><a name="[75]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMedian
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMedian
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[93]"></a>_drcmple</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmple_InfNaN
 </UL>
 
-<P><STRONG><a name="[7a]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
+<P><STRONG><a name="[79]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dsub
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcSignal
 </UL>
 
 <P><STRONG><a name="[95]"></a>_dsub</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub), UNUSED)
@@ -967,23 +969,18 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[6d]"></a>__NVIC_DisableIRQ</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, main.o(i.__NVIC_DisableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTCAlarm_IRQHandler
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
-</UL>
-
-<P><STRONG><a name="[6f]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
+<P><STRONG><a name="[6e]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo24
 </UL>
-<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo24
+<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo24
 </UL>
 <BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[70]"></a>SetSysClockTo24</STRONG> (Thumb, 178 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo24))
+<P><STRONG><a name="[6f]"></a>SetSysClockTo24</STRONG> (Thumb, 178 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo24))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo24
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 
 <P><STRONG><a name="[96]"></a>_dadd1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)

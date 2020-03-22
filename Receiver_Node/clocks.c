@@ -48,11 +48,47 @@ void portInit(void)
     #endif*/
 }
 
+void sysTick_LPF_clkInit(void)
+{
+  // Set PB14 as output
+  GPIOB->CRH |= GPIO_CRH_MODE14;
+  GPIOB->CRH &= ~GPIO_CRH_CNF14;
+  
+  SysTick->CTRL = 0x00;
+  SysTick->VAL = 0x00;
+  SysTick->LOAD = 24e6/6000; // Gives us a 3 kHz signal
+  SysTick->CTRL = 0x07;
+}
+
 void timerInit(void)
-{  
-  RCC->APB1ENR |= RCC_APB1ENR_TIM2EN; // TIM2 APB1 enable    
+{
+  RCC->APB1ENR |= RCC_APB1ENR_TIM2EN; // TIM2 APB1 enable
   TIM2->CR1 |= TIM_CR1_ARPE; // ARR register buffered
   TIM2->ARR = 0;
   TIM2->PSC = 0;
-  TIM2->CR1 |= TIM_CR1_CEN; // enable timer, by default upcounter  
+  TIM2->CR1 |= TIM_CR1_CEN; // enable timer, by default upcounter
+}
+
+void SysTick_Handler(void)
+{
+  // Turns PB14 on and off to give us a square wave clock
+  GPIOB->ODR ^= GPIO_ODR_ODR14;
+}
+
+
+void RTCAlarm_IRQHandler(void)
+{
+    if((EXTI->PR & EXTI_PR_PR17) == EXTI_PR_PR17)
+    {
+        EXTI->PR |= EXTI_PR_PR17;
+        if ((RTC->CRL & RTC_CRL_ALRF)==RTC_CRL_ALRF)
+        {
+            RTC->CRL &= ~RTC_CRL_ALRF;
+            alarm = 1;
+        }
+    }
+    else
+    {
+        NVIC_DisableIRQ(RTCAlarm_IRQn); // Disable
+    }
 }

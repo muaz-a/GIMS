@@ -143,45 +143,6 @@ uint16_t data = 0;
   return(amplitude * data);
 }
 
-void SysTick_Handler(void)
-{
-  static uint32_t long_counter = LONG_DELAY;
-  static uint32_t short_counter = SHORT_DELAY;  
-  static uint16_t error_temp = 0;
-  
-  if (long_counter-- == 0) 
-  {
-    if(error == 0)
-    {
-      /* the following instruction can only be used if no ISR modifies GPIOC ODR
-         either by writing directly it or by using GPIOC BSRR or BRR 
-         else a toggle mechanism must be implemented using GPIOC BSRR and/or BRR
-      */
-      GPIOC->ODR ^= (1<<9);//toggle green led on PC9
-      long_counter = LONG_DELAY;
-    }
-    else if (error != 0xFF)
-    {
-      /* blue led blinks according to the code error value */
-      error_temp = (error << 1) - 1;
-      short_counter = SHORT_DELAY;
-      long_counter = LONG_DELAY << 1;
-      GPIOC->BSRR = (1<<8); //set blue led on PC8
-      GPIOC->BRR = (1<<9); //switch off green led on PC9
-    }
-  }
-  if (error_temp > 0)
-  {
-    if (short_counter-- == 0) 
-    {
-      GPIOC->ODR ^= (1 << 8); //toggle blue led
-      short_counter = SHORT_DELAY;
-      error_temp--;
-    }  
-  }
-}
-
-
 /******************************************************************************/
 /*                 STM32F0xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

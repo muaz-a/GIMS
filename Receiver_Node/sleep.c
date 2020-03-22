@@ -46,6 +46,7 @@ void sleep(uint32_t seconds){
     timerInit();
     usartInit();
     ADCInit();
+    sysTick_LPF_clkInit();
 }
 
 /**

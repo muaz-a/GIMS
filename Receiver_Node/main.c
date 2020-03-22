@@ -3,7 +3,7 @@
 uint8_t pressedBtn;
 static state cur_state = WAIT_CO_1;
 state next_state;
-char tiltAlarm = '0';
+volatile char tiltAlarm = '0';
 
 int main() {  
   
@@ -13,6 +13,7 @@ int main() {
   ADCInit();
   timerInit();
   usartInit();
+  sysTick_LPF_clkInit();
   
   int rc;
   
@@ -151,10 +152,10 @@ int main() {
         break;
         
       case SLEEP_4:              
-        //#ifdef DEBUG
+        #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
         stringToLCD("Sleep for 5 min");        
-        //#endif
+        #endif
       
         sleep(15); // 15 seconds for now
         //delay(90000000); // 15 seconds - for debug
@@ -202,8 +203,10 @@ int main() {
             next_state = ERROR_STATE;
           } else if ((char)Received.data[0] == RESP)
           {
+            #ifdef DEBUG
             ToLCD(LCD_CLR,0);
             stringToLCD("Analyzing...");
+            #endif
             
             getSignal(amp, freq);
             
@@ -239,36 +242,11 @@ int main() {
         // #endif
         
         break;
-      
-//      if(detect_btn_press() != pressedBtn)
-//      {
-//        pressedBtn = detect_btn_press();
-//      
-//        if(pressedBtn == 8) // Green PB was pressed
-//        {
-//          calcSignal();
-//        }
-//      }
     }
     cur_state = next_state;
     
   }
   
-}
-
-uint8_t detect_btn_press(void) {
-  uint32_t sw_val;
-  uint8_t trunc;
-  
-  // Read in values from pin registers
-  sw_val = ((GPIOB->IDR &(GPIO_IDR_IDR8 | GPIO_IDR_IDR9)) >> 8)
-           | ((GPIOC->IDR & GPIO_IDR_IDR12) >> 10)
-           | ((GPIOA->IDR & GPIO_IDR_IDR5) >> 2) ;
-  
-  // Mask and truncate results
-  sw_val = ~sw_val & 0xF;
-  trunc = sw_val;
-  return trunc;
 }
 
 void getSignal(char amp[], char freq[])
@@ -401,10 +379,6 @@ void calcSignal(double *amplitude, double *frequency) {
   stringToLCD(" Hz");
   delay(18000000); // 3 sec
   #endif
-  
-  /*dacAmplitude = ( (int)((amplitude * 10) / 10) / 2.6 );  // divide by 3.1 earlier
-  dacInit(dacAmplitude, (uint16_t)frequency);
-  pressedBtn = 0;*/
 }
 
 int getMedian(double AL3[]) 
@@ -429,35 +403,24 @@ int getMedian(double AL3[])
     } 
 }
 
-void RTCAlarm_IRQHandler(void)
-{
-    if((EXTI->PR & EXTI_PR_PR17) == EXTI_PR_PR17)
-    {
-        EXTI->PR |= EXTI_PR_PR17;
-        if ((RTC->CRL & RTC_CRL_ALRF)==RTC_CRL_ALRF)
-        {
-            RTC->CRL &= ~RTC_CRL_ALRF;
-            alarm = 1;
-        }
-    }
-    else
-    {
-        NVIC_DisableIRQ(RTCAlarm_IRQn);// Disable
-    }
-}
-
 void EXTI15_10_IRQHandler (void)
 {
 	if(EXTI->PR & EXTI_PR_PR15) 
   {
     EXTI->PR |= EXTI_PR_PR15;
     tiltAlarm = '1';
-    GPIOC->ODR |= GPIO_ODR_ODR9;
+    
+    GPIOC->ODR |= GPIO_ODR_ODR9; // turn on onboard Green LED
     
     #ifdef DEBUG
     ToLCD(LCD_CLR, 0);
     stringToLCD("Device Tilted!");       
-    #endif    
+    #endif
+
+    if (cur_state == SLEEP_4)
+    {
+      __WFI();
+    }
   } else
   {
       NVIC_DisableIRQ(EXTI15_10_IRQn);

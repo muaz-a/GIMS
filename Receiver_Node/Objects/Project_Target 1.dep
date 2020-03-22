@@ -1,11 +1,11 @@
 Dependencies for Project 'Project', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5E742DF7)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5E76AAFE)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (main.h)(0x5E728531)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599F920E)
-I (clocks.h)(0x5E72675E)
+I (clocks.h)(0x5E76AB2E)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5E7241DF)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h)(0x5C9012B4)
@@ -13,12 +13,12 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
+I (sleep.h)(0x5E6E7D3B)
 I (lcd.h)(0x5E66BEDC)
-I (adc.h)(0x5E66D493)
-I (dac.h)(0x5E66BEDC)
 I (xbee.h)(0x5E725957)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
-I (sleep.h)(0x5E6E7D3B)
+I (adc.h)(0x5E66D493)
+I (dac.h)(0x5E66BEDC)
 F (.\main.h)(0x5E728531)()
 F (.\lcd.h)(0x5E66BEDC)()
 F (.\lcd.c)(0x5E66D493)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
@@ -32,8 +32,8 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
-F (.\clocks.c)(0x5E740E73)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\clocks.o --omf_browse .\objects\clocks.crf --depend .\objects\clocks.d)
-I (clocks.h)(0x5E72675E)
+F (.\clocks.c)(0x5E76AAF4)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\clocks.o --omf_browse .\objects\clocks.crf --depend .\objects\clocks.d)
+I (clocks.h)(0x5E76AB2E)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5E7241DF)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h)(0x5C9012B4)
@@ -42,7 +42,13 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
-F (.\clocks.h)(0x5E72675E)()
+I (sleep.h)(0x5E6E7D3B)
+I (lcd.h)(0x5E66BEDC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
+I (xbee.h)(0x5E725957)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
+I (adc.h)(0x5E66D493)
+F (.\clocks.h)(0x5E76AB2E)()
 F (.\adc.h)(0x5E66D493)()
 F (.\adc.c)(0x5E66D493)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
 I (adc.h)(0x5E66D493)
@@ -55,7 +61,7 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
 F (.\dac.h)(0x5E66BEDC)()
-F (.\dac.c)(0x5E66D493)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\dac.o --omf_browse .\objects\dac.crf --depend .\objects\dac.d)
+F (.\dac.c)(0x5E769EB1)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\dac.o --omf_browse .\objects\dac.crf --depend .\objects\dac.d)
 I (dac.h)(0x5E66BEDC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
@@ -81,7 +87,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
 I (lcd.h)(0x5E66BEDC)
 F (.\xbee.h)(0x5E725957)()
-F (.\sleep.c)(0x5E724919)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\sleep.o --omf_browse .\objects\sleep.crf --depend .\objects\sleep.d)
+F (.\sleep.c)(0x5E769E1B)(--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\Device\STM32F100RB-I.\RTE\_Target_1-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include-IC:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F10X_MD_VL-o .\objects\sleep.o --omf_browse .\objects\sleep.crf --depend .\objects\sleep.d)
 I (sleep.h)(0x5E6E7D3B)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x5825FD4C)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5E7241DF)
@@ -91,7 +97,7 @@ I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cms
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h)(0x5C9012B4)
 I (C:\Users\muazh\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x5825FD4C)
-I (clocks.h)(0x5E72675E)
+I (clocks.h)(0x5E76AB2E)
 I (lcd.h)(0x5E66BEDC)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
 I (xbee.h)(0x5E725957)
