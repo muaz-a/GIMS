@@ -23,7 +23,11 @@ int main(void)
     clockInit();
     init_usart();
     initLCD();
-
+	
+	sine(3);
+	while(1);
+	sineOff();
+	
     while(1)
     {
         switch(cur_state)

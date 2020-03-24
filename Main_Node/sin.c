@@ -53,29 +53,29 @@ uint16_t data = 0;
 
   if (i < 90)
   {
-    data = 0x800 + ComputeSinusPolynomialApprox(i);
+    data = 0x800 + (ComputeSinusPolynomialApprox(i)/scale);
     i+=INCREMENT;
   }
   else if (i < 180)  /* PI/2 < i < PI */
   {
-    data = 0x800 + ComputeSinusPolynomialApprox(180-i);
+    data = 0x800 + (ComputeSinusPolynomialApprox(180-i)/scale));
     i+=INCREMENT;
   }
   else if (i < (180 + 90))  /* PI < i < 3PI/2 */
   {
-    data = 0x800 - ComputeSinusPolynomialApprox(i-180);
+    data = 0x800 - (ComputeSinusPolynomialApprox(i-180)/scale);
     i+=INCREMENT;
   }
   else if (i < 360)  /* 3PI/2 < i < 2PI */
   {
-    data = 0x800 - ComputeSinusPolynomialApprox(360-i);
+    data = 0x800 - (ComputeSinusPolynomialApprox(360-i)/scale);
     i+=INCREMENT;
     if (i >= 360)
     {
       i=0;
     }
   }
-  return(data/scale);
+  return(data);
 }
 
 
