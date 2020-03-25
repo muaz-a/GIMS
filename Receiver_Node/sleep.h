@@ -7,10 +7,13 @@
 #include "xbee.h"
 #include "adc.h"
 
+extern uint8_t backToSleep;
+
 void sleep(uint32_t);
 void Configure_RTC(uint32_t);
 void Disable_RTC(void);
 //require interrupt handler
 void EXTI8Init(void); //enable interrupt (PB8)
 void EXTI8Dis(void);    //disable interrupt (PB8)
+
 #endif

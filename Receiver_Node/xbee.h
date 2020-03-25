@@ -80,4 +80,10 @@ int XbeeRecieve(RXD *recieved, uint32_t delay);
 // xbee addresses, index and status
 void XbeeSetUp(NODE Devices[]);
 
+// Send Xbee to sleep state when board sleeps
+void XbeeSleep(void);
+
+// Wake Xbee from sleep state 
+void XbeeWake(void);
+
 #endif

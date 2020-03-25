@@ -26,24 +26,35 @@ void sleep(uint32_t seconds){
         adcOn = adcOn+2;
     }
     
-    //Setup STOP mode
+    // Setup STOP mode
     SCB->SCR |= SCB_SCR_SLEEPDEEP;
-    PWR->CR &= ~PWR_CR_PDDS; //set to stop mode
-    PWR->CR |= PWR_CR_LPDS; //set low power mode
-    PWR->CR |= PWR_CR_CWUF; //clear WUF
+    PWR->CR &= ~PWR_CR_PDDS; // set to stop mode
+    PWR->CR |= PWR_CR_LPDS; // set low power mode
+    PWR->CR |= PWR_CR_CWUF; // clear WUF
     
+		// Send Xbee to sleep
+		XbeeSleep();
+		
     //Enable exit conditions, STOP
     //EXTI8Init(); //Enable to allow early exit
     Configure_RTC(seconds);
     __WFI();
     
+    if (backToSleep == 1)
+    {
+      backToSleep = 0;
+      __WFI();
+    }
+    
+		// Wake Xbee up
+		XbeeWake();
+
     Disable_RTC();
     //EXTI8Dis();
     clockInit();
-    clockInit();
     portInit();
     LCDInit();
-    timerInit();
+    //timerInit();
     usartInit();
     ADCInit();
     sysTick_LPF_clkInit();
@@ -149,4 +160,3 @@ void Disable_RTC(void) {
     RTC->CRL &= ~RTC_CRL_CNF;
     while((RTC->CRL & RTC_CRL_RTOFF) != RTC_CRL_RTOFF);
 }
-

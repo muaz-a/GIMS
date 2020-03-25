@@ -12,6 +12,13 @@ void clockInit(void);
 // Initialize port clocks and modes
 void portInit(void);
 
+// Setting up ext interrupt for tilt switch input on PB15
+// Also sets up USER button (PA0) to reset the tilted device condition
+void tiltSwitchInit(void);
+
+// Init PC15 to send sleep signal to Xbee
+void XbeeSleepIOInit(void);
+
 // Initialize systick as the clock for the Low Pass Filter
 void sysTick_LPF_clkInit(void);
 

@@ -170,7 +170,6 @@ void DMA1_Channel3_IRQHandler(void)
   }
 }
 
-
 /**
   * @brief  This function handles DMA Channel1 interrupt request.
   *         It only manages DMA error

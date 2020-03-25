@@ -153,25 +153,20 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>bfull</ItemText>
+          <ItemText>buffer[k]</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buffer[k]</ItemText>
+          <ItemText>k</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>k</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
           <ItemText>cur_state</ItemText>
         </Ww>
         <Ww>
-          <count>4</count>
+          <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>\\Project\main.c\cur_state</ItemText>
         </Ww>

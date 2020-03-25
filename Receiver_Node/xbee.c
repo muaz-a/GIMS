@@ -60,7 +60,8 @@ uint16_t recieve_usart(void)
      if(k==bsize){                // once at end of pecket
        bfull = true;              // set buffer full flag
        k=0;                        // reset k counter
-       GPIOC->ODR &= 0xEF;        // reset Blue LED onboard
+       //GPIOC->ODR &= 0xEF;        // reset Blue LED onboard
+       GPIOC->ODR &= ~GPIO_ODR_ODR8;
      }else{
        bfull = false;              // if not at end increment counter
       k++;
@@ -228,4 +229,16 @@ void XbeeSetUp(NODE Devices[])
     Devices[i].status = RDY;        // set to ready
     Devices[i].index = i+1;        // set to address
   }    
+}
+
+void XbeeSleep(void)
+{
+	// Set PA1 high to send Xbee to sleep state
+	GPIOA->ODR |= GPIO_ODR_ODR1;
+}
+
+void XbeeWake(void)
+{
+	// Set PA1 low to wake Xbee 
+	GPIOA->ODR &= ~GPIO_ODR_ODR1;
 }

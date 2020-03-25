@@ -4,16 +4,20 @@ uint8_t pressedBtn;
 static state cur_state = WAIT_CO_1;
 state next_state;
 volatile char tiltAlarm = '0';
+uint8_t backToSleep = 0;
 
 int main() {  
   
   clockInit();
   portInit();
-  LCDInit();
   ADCInit();
-  timerInit();
+  //timerInit(); // Don't think I am using this for anything
   usartInit();
   sysTick_LPF_clkInit();
+  
+  #ifdef DEBUG
+  LCDInit();
+  #endif
   
   int rc;
   
@@ -25,15 +29,14 @@ int main() {
   
   #ifdef DEBUG
   char dispBuf[8];
-  #endif
   
-  ToLCD(LCD_LN1, 0);
-  //stringToLCD("Welcome to GIMS!");
+  ToLCD(LCD_LN1, 0);  
   stringToLCD("Welcome to GIMS!");
   delay(12000000); // ~12e6 = 2 sec
   ToLCD(LCD_CLR, 0);
   ToLCD(LCD_LN1, 0);
-  
+  #endif
+    
   while(1) 
   {
     switch(cur_state)
@@ -47,8 +50,11 @@ int main() {
       
         while(next_state == WAIT_CO_1)
         {
+          #ifdef DEBUG
           ToLCD(LCD_CLR, 0);
           stringToLCD("Waitin for SYNCH");          
+          #endif
+          
           // will have to wait indefinitely here until receive signal from CO
           XbeeRecieve(&Received, 0);
           
@@ -107,11 +113,11 @@ int main() {
         // Wait on CO to signal us to sleep
         next_state = WAIT_CO_3;
         
-        //#ifdef DEBUG
+        #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
         stringToLCD("Waitin for SLEEP");
         delay(2000000);
-        //#endif
+        #endif
       
         while(next_state == WAIT_CO_3)
         {
@@ -158,13 +164,13 @@ int main() {
         #endif
       
         sleep(15); // 15 seconds for now
-        //delay(90000000); // 15 seconds - for debug
+        // delay(90000000); // 15 seconds - for debug
       
-        //#ifdef DEBUG
+        #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
         stringToLCD("Awake");        
         delay(12000000);
-        //#endif
+        #endif
       
         next_state = PROCESS_SIG_5;
         break;
@@ -176,7 +182,6 @@ int main() {
       
         rc = 1;
         char amp[8], freq[8];
-        // double amp, freq;
       
         // send RESP state
         xbeeSend(coAddr, 1, "3"); // RESP
@@ -233,13 +238,13 @@ int main() {
         
         next_state = ERROR_STATE;
         
-        // #ifdef DEBUG
+        #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
         stringToLCD("ERROR STATE");
         ToLCD(LCD_LN2, 0);  
         stringToLCD("Here for good");
         delay(24000000);
-        // #endif
+        #endif
         
         break;
     }
@@ -271,8 +276,6 @@ void calcSignal(double *amplitude, double *frequency) {
   #ifdef DEBUG
   char vBuf[8],         // char buffer to hold voltage value to print on LCD
        freqBuf[8];      // char buffer to hold frequency value to print on LCD
-  
-  // double dacAmplitude;  // amplitude to send to DAC - percentage of 3.1V
   #endif
   
   unsigned long peakCtr, // peak crossing counter
@@ -408,21 +411,32 @@ void EXTI15_10_IRQHandler (void)
 	if(EXTI->PR & EXTI_PR_PR15) 
   {
     EXTI->PR |= EXTI_PR_PR15;
+    
     tiltAlarm = '1';
+    backToSleep = 1;
     
     GPIOC->ODR |= GPIO_ODR_ODR9; // turn on onboard Green LED
     
     #ifdef DEBUG
     ToLCD(LCD_CLR, 0);
     stringToLCD("Device Tilted!");       
-    #endif
-
-    if (cur_state == SLEEP_4)
-    {
-      __WFI();
-    }
+    #endif    
   } else
   {
       NVIC_DisableIRQ(EXTI15_10_IRQn);
   }
+}
+
+void EXTI0_IRQHandler (void)
+{
+  EXTI->PR |= EXTI_PR_PR0;
+  
+  if(tiltAlarm == '1')
+  {
+    tiltAlarm = '0';
+    backToSleep = 1;
+  }
+  
+  GPIOC->ODR &= ~GPIO_ODR_ODR9; // turn off Green LED
+  GPIOA->ODR ^= GPIO_ODR_ODR1;
 }
