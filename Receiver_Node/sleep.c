@@ -54,7 +54,6 @@ void sleep(uint32_t seconds){
     clockInit();
     portInit();
     LCDInit();
-    //timerInit();
     usartInit();
     ADCInit();
     sysTick_LPF_clkInit();

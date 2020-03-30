@@ -11,7 +11,6 @@ int main() {
   clockInit();
   portInit();
   ADCInit();
-  //timerInit(); // Don't think I am using this for anything
   usartInit();
   sysTick_LPF_clkInit();
   
@@ -287,15 +286,15 @@ void calcSignal(double *amplitude, double *frequency) {
   
   double min,           // minimum ADC reading
          max,           // maximum ADC reading
-         vCutoffRise,   // 0.7 x max ADC reading
-         vCutoffFall;   // 0.5 x max ADC reading      
+         vCutoffRise,   // 0.8 x max ADC reading (0.7 earlier)
+         vCutoffFall;   // 0.3 x max ADC reading (0.5 earlier) 
     
-  min = 2000;
+  min = 4095;
   max = 0;
   peakCtr = 0;
   cycCtr = 0;
   
-  for (int i = 0; i < 200000; i++)
+  for (int i = 0; i < SAMPLED_CYCLES_AMP; i++)
   {
     read = readADC(); // this can take around 28 ticks
 
@@ -305,11 +304,16 @@ void calcSignal(double *amplitude, double *frequency) {
     if (read < min)
       min = read;
   }
-  vCutoffRise = 0.7 * max; // peak detection for frequency
-  vCutoffFall = 0.5 * max;
+	
+  vCutoffRise = 0.8 * max; // peak detection for frequency
+  vCutoffFall = 0.3 * max;
   
   min = 3.3*(((double)min)/4095.0); // convert to voltage level
   max = 3.3*(((double)max)/4095.0);
+	
+	max -= 0.256;
+	min += 0.342;
+	
   *amplitude = max - min;
   
   #ifdef DEBUG
@@ -324,9 +328,9 @@ void calcSignal(double *amplitude, double *frequency) {
   #endif
   
   alarm = 0;
-  Configure_RTC(3); // set 3 second alarm
+  Configure_RTC(4); // set 4 second alarm
   
-  for (j = 0; j < SAMPLED_CYCLES; j++)
+  for (j = 0; j < SAMPLED_CYCLES_FREQ; j++)
   {
     do { 
       read = readADC(); 
@@ -356,7 +360,7 @@ void calcSignal(double *amplitude, double *frequency) {
   //GPIOB->BSRR = 0x4000000; // set PB10 low. 
   #endif
   
-  if (peakCtr != SAMPLED_CYCLES)
+  if (peakCtr != SAMPLED_CYCLES_FREQ)
   {
     // MHA: An error has occurred here
     // It may be that the amplitude of the wave may be much lower than the peak
@@ -366,7 +370,7 @@ void calcSignal(double *amplitude, double *frequency) {
   
   *frequency = (double)peakCtr * ( 205194.0 / (double)cycCtr ); // num = 189995
   
-  if (alarm || *frequency > 5000 || *frequency < 10) // hard limits on freq
+  if (alarm || *frequency > 5000 || *frequency < 7) // hard limits on freq
     *frequency = 0; // can also do error reporting later
     
   #ifdef DEBUG

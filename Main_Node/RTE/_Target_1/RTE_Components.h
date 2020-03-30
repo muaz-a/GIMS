@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Project' 
+ * Project: 'main_node' 
  * Target:  'Target 1' 
  */
 

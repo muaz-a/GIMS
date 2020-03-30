@@ -1,8 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define DEBUG
-#define SAMPLED_CYCLES 20
+// #define DEBUG
+#define SAMPLED_CYCLES_FREQ 20
+#define SAMPLED_CYCLES_AMP  200000
 
 #define SYNCH '1'
 #define SLEEP '2'
