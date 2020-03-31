@@ -22,9 +22,9 @@ int main() {
   
   // Comms setup
   uint8_t coAddr[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-  NODE Device[2];
+  //NODE Device[2];
   RXD Received;
-  XbeeSetUp(Device); // Set up Device Struct with Xbee adr, idx and status
+  // XbeeSetUp(Device); // Set up Device Struct with Xbee adr, idx and status
   
   #ifdef DEBUG
   char dispBuf[8];
@@ -150,7 +150,7 @@ int main() {
             
             // send back SLEEP signal, and go to sleep for 5 min       
             xbeeSend(coAddr, 1, "2"); 
-            
+						
             next_state = SLEEP_4;
           }
         }        
@@ -162,8 +162,8 @@ int main() {
         stringToLCD("Sleep for 5 min");        
         #endif
       
-        sleep(15); // 15 seconds for now
-        // delay(90000000); // 15 seconds - for debug
+        sleep(25); // 15 seconds for now
+        //delay(18000000); // 15 seconds - for debug
       
         #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
@@ -237,6 +237,8 @@ int main() {
         
         next_state = ERROR_STATE;
         
+				//GPIOC->ODR = GPIO_ODR_ODR9;
+			
         #ifdef DEBUG
         ToLCD(LCD_CLR, 0);
         stringToLCD("ERROR STATE");
@@ -412,8 +414,6 @@ int getMedian(double AL3[])
 
 void EXTI15_10_IRQHandler (void)
 {
-	if(EXTI->PR & EXTI_PR_PR15) 
-  {
     EXTI->PR |= EXTI_PR_PR15;
     
     tiltAlarm = '1';
@@ -425,22 +425,14 @@ void EXTI15_10_IRQHandler (void)
     ToLCD(LCD_CLR, 0);
     stringToLCD("Device Tilted!");       
     #endif    
-  } else
-  {
-      NVIC_DisableIRQ(EXTI15_10_IRQn);
-  }
 }
 
 void EXTI0_IRQHandler (void)
 {
   EXTI->PR |= EXTI_PR_PR0;
   
-  if(tiltAlarm == '1')
-  {
-    tiltAlarm = '0';
-    backToSleep = 1;
-  }
+	tiltAlarm = '0';
+	backToSleep = 1;
   
   GPIOC->ODR &= ~GPIO_ODR_ODR9; // turn off Green LED
-  GPIOA->ODR ^= GPIO_ODR_ODR1;
 }

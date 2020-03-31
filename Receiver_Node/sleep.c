@@ -3,12 +3,12 @@
 volatile uint8_t alarm = 0;
 
 void sleep(uint32_t seconds){
-    int dacOn = 0;
+    /*int dacOn = 0;
     int adcOn = 0;
-    /*
-    **  Checks for ADC, DAC, disables
-    **  Remember which ones to re-enable
-    */
+    
+    //  Checks for ADC, DAC, disables
+    //  Remember which ones to re-enable
+    
     if ((DAC->CR & DAC_CR_EN1)==DAC_CR_EN1){
         DAC->CR &= ~DAC_CR_EN1;
         dacOn++;
@@ -24,7 +24,7 @@ void sleep(uint32_t seconds){
     if ((ADC2->CR2 & ADC_CR2_ADON)==ADC_CR2_ADON){
         ADC2->CR2 &= ~ADC_CR2_ADON;
         adcOn = adcOn+2;
-    }
+    }*/
     
     // Setup STOP mode
     SCB->SCR |= SCB_SCR_SLEEPDEEP;
@@ -38,13 +38,15 @@ void sleep(uint32_t seconds){
     //Enable exit conditions, STOP
     //EXTI8Init(); //Enable to allow early exit
     Configure_RTC(seconds);
-    __WFI();
-    
-    if (backToSleep == 1)
-    {
-      backToSleep = 0;
-      __WFI();
-    }
+    alarm = 0;
+		
+		__WFI();
+		
+		while (!alarm)
+		{			
+			__WFI();
+			backToSleep = 0;
+		}		
     
 		// Wake Xbee up
 		XbeeWake();
@@ -53,10 +55,13 @@ void sleep(uint32_t seconds){
     //EXTI8Dis();
     clockInit();
     portInit();
-    LCDInit();
-    usartInit();
     ADCInit();
+		usartInit();    
     sysTick_LPF_clkInit();
+		
+		#ifdef DEBUG
+		LCDInit();
+		#endif
 }
 
 /**

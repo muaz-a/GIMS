@@ -114,6 +114,9 @@ uint16_t recieve_usart(void)
    }
    send_usart(checksum);
    
+	 // This delay may be the single most important delay in GIMS
+	 delay(10000);
+	 
    return;
    
    

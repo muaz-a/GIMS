@@ -165,11 +165,6 @@
           <WinNumber>1</WinNumber>
           <ItemText>cur_state</ItemText>
         </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>\\Project\main.c\cur_state</ItemText>
-        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
