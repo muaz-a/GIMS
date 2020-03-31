@@ -40,7 +40,8 @@ typedef enum
 	INDEX_3,
 	STAGGER_RESP_4,
 	LISTEN_5,
-	ANALYZE_6
+	ANALYZE_6,
+	ERROR_STATE
 } state;
 
 #endif
