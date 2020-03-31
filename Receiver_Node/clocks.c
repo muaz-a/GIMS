@@ -89,6 +89,7 @@ void tiltSwitchInit(void)
     EXTI->FTSR |= EXTI_FTSR_TR0; // falling edge for user button (PA0)
     EXTI->PR |= EXTI_PR_PR15 | EXTI_PR_PR0; 
     NVIC->ICPR[1] |= NVIC_ICPR_CLRPEND_8;
+    NVIC->ICPR[0] |= NVIC_ICPR_CLRPEND_6;
     NVIC->ISER[1] |= NVIC_ISER_SETENA_8; // Bit 8 is pos 40 as per pg 131/RM (PB15)
     NVIC->ISER[0] |= NVIC_ISER_SETENA_6; // Bit 6 for EXTI0 for PA0
 }
