@@ -1,7 +1,5 @@
 #include "main.h"
 
-
-
 uint8_t indexED(NODE *);
 void stagger(uint8_t, NODE *);
 void listen(uint8_t, NODE *);
@@ -24,16 +22,14 @@ int main(void)
     init_usart();
     initLCD();
 
-    sine(3);
-    while(1);
-    sineOff();
-
     while(1)
     {
         switch(cur_state)
         {
             case POWER_UP_1:    // idle startup time, identifiale by LCD message
-                stringToLCD("Power Up");
+                stringToLCD("Welcome to GIMS");
+                commandToLCD(LCD_LN2);
+                stringToLCD("v1.62");
                 for(int i=0; i<12000000; i++);
                 next_state = SEND_SYNCH_2;
                 delay(6000000);
@@ -56,8 +52,9 @@ int main(void)
                     commandToLCD(LCD_CLR);
                     stringToLCD("No End Devices");
                     commandToLCD(LCD_LN2);
-                    stringToLCD("Check Node Connections");
-                    next_state = POWER_UP_1;
+                    stringToLCD("Check Node Conn");
+                    delay(18000000);
+                    next_state = ERROR_STATE;
                 }
                 else    next_state = STAGGER_RESP_4;
 
@@ -77,7 +74,9 @@ int main(void)
                 break;
             case ERROR_STATE:
 				commandToLCD(LCD_CLR);
-                stringToLCD("Please reset device");
+                stringToLCD("Please reset");
+                commandToLCD(LCD_LN2);
+                stringToLCD("device");
                 next_state = ERROR_STATE;
 				while(1);
 			break;
@@ -99,7 +98,7 @@ uint8_t indexED(NODE *Device)
     Configure_RTC(8);
     stringToLCD("Waiting for");
     commandToLCD(LCD_LN2);
-    stringToLCD("request");
+    stringToLCD("SYNCH response");
     while(!alarm) {
         XbeeReceive(&Received);
         if(Received.data[0] == SYNCH)
@@ -126,7 +125,7 @@ void stagger(uint8_t num, NODE * Devices)
     RXD Received;
 
     commandToLCD(LCD_CLR);
-    stringToLCD("Stagger Start");
+    stringToLCD("Trigger ED Sleep");
     for(int j = 0; j < num; j++)
     {
         xbeeSend(Devices[j].address,1,"2");
@@ -144,7 +143,7 @@ void stagger(uint8_t num, NODE * Devices)
             stringToLCD("Times Out");
         }
         commandToLCD(LCD_LN2);
-        stringToLCD("2 Received");
+        stringToLCD("ED Sleep Ack");
         delay(6000000);
 
         if((j+1)<num)   // delay between ED for all but last device
@@ -168,18 +167,17 @@ void listen(uint8_t num, NODE * Devices)
     alarm = 0;
     commandToLCD(LCD_CLR);
     //Configure_RTC(15-(STAGGER*(num-1)));  // ~5 minutes
-    Configure_RTC(20);  // ~5 minutes
-    stringToLCD("Waiting for");
+    Configure_RTC(25);  // ~5 minutes
+    stringToLCD("Waiting for ED");
     commandToLCD(LCD_LN2);
-    stringToLCD("3");
-    delay(6000000);
+    stringToLCD("Wake up");
     for(int j = 0; j < num; j++)
     {
         XbeeReceive(&Received); // wait for ED to send Resp ("3")
         if(Received.data[0] == RESP)    // make sure "3" was recieved
         {
             commandToLCD(LCD_CLR);
-            stringToLCD("3 Recieved");
+            stringToLCD("ED Awake");
             xbeeSend(Received.address,1,"3");
             delay(120000);
         }
@@ -325,6 +323,8 @@ void analyze(uint8_t num, NODE * Devices)
         }
         else
         {
+            
+            stringToLCD("Amp: ");
             for(int i=0; i <LENGTH; i++)
             {
                 if(Devices[j].ampl[i] > 0x2C)
@@ -332,12 +332,15 @@ void analyze(uint8_t num, NODE * Devices)
             }
 
             commandToLCD(LCD_LN2);
+            stringToLCD("Freq: ");
             for(int i=0; i <LENGTH; i++)
             {
                 if(Devices[j].freq[i] > 0x2C)
                     dataToLCD(Devices[j].freq[i]);
             }
 
+            delay(15000000);
+            
             Devices[j].Dfreq = 0;
             Devices[j].Dampl = 0;
             Freq = atof(Devices[j].freq);
@@ -348,14 +351,16 @@ void analyze(uint8_t num, NODE * Devices)
             {
                 Tilt[j] = 1;
                 commandToLCD(LCD_CLR);
-                stringToLCD("Tilt Switch Trig");
+                stringToLCD("Tamper Detected");
                 commandToLCD(LCD_LN2);
-                stringToLCD("Device ");
+                stringToLCD("on Device ");
                 dataToLCD((j+1)+0x30);
             }
             else
+            {
                 Tilt[j] = 0;
-            delay(6000000);
+            }
+            delay(9000000);
         }
     }
 }

@@ -6,7 +6,7 @@ uint16_t sin_data[SIN_ARRAY_SIZE]; //table containing the data to generate the s
 
 
 void sine(uint8_t scale) {
-    sinGen(scale);
+    sinGen(2);
 }
 
 void sineOff(void){
@@ -58,7 +58,7 @@ uint16_t data = 0;
   }
   else if (i < 180)  /* PI/2 < i < PI */
   {
-    data = 0x800 + (ComputeSinusPolynomialApprox(180-i)/scale));
+    data = 0x800 + (ComputeSinusPolynomialApprox(180-i)/scale);
     i+=INCREMENT;
   }
   else if (i < (180 + 90))  /* PI < i < 3PI/2 */

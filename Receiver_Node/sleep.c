@@ -3,30 +3,7 @@
 volatile uint8_t alarm = 0;
 
 void sleep(uint32_t seconds)
-{
-    /*int dacOn = 0;
-    int adcOn = 0;
-
-    //  Checks for ADC, DAC, disables
-    //  Remember which ones to re-enable
-
-    if ((DAC->CR & DAC_CR_EN1)==DAC_CR_EN1){
-        DAC->CR &= ~DAC_CR_EN1;
-        dacOn++;
-    }
-    if ((DAC->CR & DAC_CR_EN2)==DAC_CR_EN2){
-        DAC->CR &= ~DAC_CR_EN2;
-        dacOn = dacOn+2;
-    }
-    if ((ADC1->CR2 & ADC_CR2_ADON)==ADC_CR2_ADON){
-        ADC1->CR2 &= ~ADC_CR2_ADON;
-        adcOn = adcOn+1;
-    }
-    if ((ADC2->CR2 & ADC_CR2_ADON)==ADC_CR2_ADON){
-        ADC2->CR2 &= ~ADC_CR2_ADON;
-        adcOn = adcOn+2;
-    }*/
-
+{    
     // Setup STOP mode
     SCB->SCR |= SCB_SCR_SLEEPDEEP;
     PWR->CR &= ~PWR_CR_PDDS; // set to stop mode
@@ -53,7 +30,6 @@ void sleep(uint32_t seconds)
     XbeeWake();
 
     Disable_RTC();
-    //EXTI8Dis();
     clockInit();
     portInit();
     ADCInit();
@@ -64,29 +40,6 @@ void sleep(uint32_t seconds)
     LCDInit();
 #endif
 }
-
-/**
-void EXTI8Init(void)
-{
-    //Set External interrupt source to PB8 and PB9
-    butInit();
-    RCC->APB2ENR |= RCC_APB2ENR_AFIOEN;
-    AFIO->EXTICR[2] |= AFIO_EXTICR3_EXTI8_PB | AFIO_EXTICR3_EXTI9_PB;
-    EXTI->IMR |= EXTI_IMR_MR8 | EXTI_IMR_MR9;  //turn on interrupt masking
-    EXTI->RTSR |= EXTI_RTSR_TR8 | EXTI_RTSR_TR9; //Set rising edge setting
-    EXTI->PR |= EXTI_PR_PR8 | EXTI_PR_PR9;
-    NVIC->ICPR[0] |= NVIC_ICPR_CLRPEND_23;
-    NVIC->ISER[0] |= NVIC_ISER_SETENA_23;
-}
-
-
-//disable interrupt
-void EXTI8Dis(void){
-    NVIC->ICER[0] |= NVIC_ICER_CLRENA_23;
-    NVIC->ICPR[0] |= NVIC_ICPR_CLRPEND_23;
-    EXTI->IMR &= ~(EXTI_IMR_MR8 | EXTI_IMR_MR9);
-}
-**/
 
 void Configure_RTC(uint32_t seconds)
 {

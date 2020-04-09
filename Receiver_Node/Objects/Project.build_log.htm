@@ -26,13 +26,21 @@ Project File Date:  03/25/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling lcd.c...
+compiling adc.c...
+compiling xbee.c...
+compiling clocks.c...
+compiling sleep.c...
+compiling dac.c...
 compiling main.c...
 main.c(220): warning:  #167-D: argument of type "volatile char *" is incompatible with parameter of type "char *"
-              xbeeSend(coAddr, sizeof(tiltAlarm), &tiltAlarm);
+                          xbeeSend(coAddr, sizeof(tiltAlarm), &tiltAlarm);
 main.c: 1 warning, 0 errors
+assembling startup_stm32f10x_md_vl.s...
+compiling system_stm32f10x.c...
 linking...
-Program Size: Code=10476 RO-data=496 RW-data=40 ZI-data=1664  
+Program Size: Code=10584 RO-data=496 RW-data=40 ZI-data=1664  
 ".\Objects\Project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -62,14 +70,14 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: ARM::CMSIS:DSP:Library:1.7.0
-      Include file:  CMSIS\DSP\Include\arm_math.h
       Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM3l_math.lib
+      Include file:  CMSIS\DSP\Include\arm_math.h
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Source file:   Device\Source\system_stm32f10x.c
+      Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\system_stm32f10x.c
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
